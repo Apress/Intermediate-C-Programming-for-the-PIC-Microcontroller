@@ -1,0 +1,1229 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Mon Mar 09 11:13:37 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4525
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     8                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     9                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    10                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    13                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    14                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    15  0000                     
+    16                           ; Version 2.10
+    17                           ; Generated 31/07/2019 GMT
+    18                           ; 
+    19                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    20                           ; All rights reserved.
+    21                           ; 
+    22                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    23                           ; 
+    24                           ; Redistribution and use in source and binary forms, with or without modification, are
+    25                           ; permitted provided that the following conditions are met:
+    26                           ; 
+    27                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    28                           ;        conditions and the following disclaimer.
+    29                           ; 
+    30                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    31                           ;        of conditions and the following disclaimer in the documentation and/or other
+    32                           ;        materials provided with the distribution.
+    33                           ; 
+    34                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    35                           ;        software without specific prior written permission.
+    36                           ; 
+    37                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    38                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    39                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    40                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    41                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    42                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    43                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    44                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    45                           ; 
+    46                           ; 
+    47                           ; Code-generator required, PIC18F4525 Definitions
+    48                           ; 
+    49                           ; SFR Addresses
+    50  0000                     
+    51                           	psect	idataCOMRAM
+    52  00BACA                     __pidataCOMRAM:
+    53                           	opt callstack 0
+    54                           
+    55                           ;initializer for _displaynumber
+    56  00BACA  40                 	db	64
+    57  00BACB  79                 	db	121
+    58  00BACC  24                 	db	36
+    59  00BACD  30                 	db	48
+    60  00BACE  19                 	db	25
+    61  00BACF  12                 	db	18
+    62  00BAD0  03                 	db	3
+    63  00BAD1  78                 	db	120
+    64  00BAD2  00                 	db	0
+    65  00BAD3  18                 	db	24
+    66  0000                     _TMR0	set	4054
+    67  0000                     _PORTEbits	set	3972
+    68  0000                     _T0CON	set	4053
+    69  0000                     _OSCCON	set	4051
+    70  0000                     _OSCTUNE	set	3995
+    71  0000                     _ADCON1	set	4033
+    72  0000                     _ADCON0	set	4034
+    73  0000                     _TRISE	set	3990
+    74  0000                     _TRISD	set	3989
+    75  0000                     _TRISC	set	3988
+    76  0000                     _TRISB	set	3987
+    77  0000                     _TRISA	set	3986
+    78  0000                     _PORTE	set	3972
+    79  0000                     _PORTD	set	3971
+    80  0000                     _PORTC	set	3970
+    81  0000                     _PORTB	set	3969
+    82  0000                     _PORTA	set	3968
+    83                           
+    84                           ; #config settings
+    85  0000                     
+    86                           	psect	cinit
+    87  00BAF4                     __pcinit:
+    88                           	opt callstack 0
+    89  00BAF4                     start_initialization:
+    90                           	opt callstack 0
+    91  00BAF4                     __initialization:
+    92                           	opt callstack 0
+    93                           
+    94                           ; Initialize objects allocated to COMRAM (10 bytes)
+    95                           ; load TBLPTR registers with __pidataCOMRAM
+    96  00BAF4  0ECA               	movlw	low __pidataCOMRAM
+    97  00BAF6  6EF6               	movwf	tblptrl,c
+    98  00BAF8  0EBA               	movlw	high __pidataCOMRAM
+    99  00BAFA  6EF7               	movwf	tblptrh,c
+   100  00BAFC  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   101  00BAFE  6EF8               	movwf	tblptru,c
+   102  00BB00  EE00  F001         	lfsr	0,__pdataCOMRAM
+   103  00BB04  EE10 F00A          	lfsr	1,10
+   104  00BB08                     copy_data0:
+   105  00BB08  0009               	tblrd		*+
+   106  00BB0A  CFF5 FFEE          	movff	tablat,postinc0
+   107  00BB0E  50E5               	movf	postdec1,w,c
+   108  00BB10  50E1               	movf	fsr1l,w,c
+   109  00BB12  E1FA               	bnz	copy_data0
+   110                           
+   111                           ; Clear objects allocated to COMRAM (6 bytes)
+   112  00BB14  6A10               	clrf	(__pbssCOMRAM+5)& (0+255),c
+   113  00BB16  6A0F               	clrf	(__pbssCOMRAM+4)& (0+255),c
+   114  00BB18  6A0E               	clrf	(__pbssCOMRAM+3)& (0+255),c
+   115  00BB1A  6A0D               	clrf	(__pbssCOMRAM+2)& (0+255),c
+   116  00BB1C  6A0C               	clrf	(__pbssCOMRAM+1)& (0+255),c
+   117  00BB1E  6A0B               	clrf	__pbssCOMRAM& (0+255),c
+   118  00BB20                     end_of_initialization:
+   119                           	opt callstack 0
+   120  00BB20                     __end_of__initialization:
+   121                           	opt callstack 0
+   122  00BB20  0100               	movlb	0
+   123  00BB22  EFB2  F05D         	goto	_main	;jump to C main() function
+   124                           
+   125                           	psect	bssCOMRAM
+   126  00000B                     __pbssCOMRAM:
+   127                           	opt callstack 0
+   128  00000B                     _hourTens:
+   129                           	opt callstack 0
+   130  00000B                     	ds	1
+   131  00000C                     _hourUnits:
+   132                           	opt callstack 0
+   133  00000C                     	ds	1
+   134  00000D                     _minTens:
+   135                           	opt callstack 0
+   136  00000D                     	ds	1
+   137  00000E                     _minUnits:
+   138                           	opt callstack 0
+   139  00000E                     	ds	1
+   140  00000F                     _m:
+   141                           	opt callstack 0
+   142  00000F                     	ds	1
+   143  000010                     _n:
+   144                           	opt callstack 0
+   145  000010                     	ds	1
+   146                           
+   147                           	psect	dataCOMRAM
+   148  000001                     __pdataCOMRAM:
+   149                           	opt callstack 0
+   150  000001                     _displaynumber:
+   151                           	opt callstack 0
+   152  000001                     	ds	10
+   153                           
+   154                           	psect	cstackCOMRAM
+   155  000000                     __pcstackCOMRAM:
+   156                           	opt callstack 0
+   157  000000                     
+   158                           ; 1 bytes @ 0x0
+   159 ;;
+   160 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   161 ;;
+   162 ;; *************** function _main *****************
+   163 ;; Defined at:
+   164 ;;		line 58 in file "7seg24hrClock.c"
+   165 ;; Parameters:    Size  Location     Type
+   166 ;;		None
+   167 ;; Auto vars:     Size  Location     Type
+   168 ;;		None
+   169 ;; Return value:  Size  Location     Type
+   170 ;;                  1    wreg      void 
+   171 ;; Registers used:
+   172 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   173 ;; Tracked objects:
+   174 ;;		On entry : 0/0
+   175 ;;		On exit  : 0/0
+   176 ;;		Unchanged: 0/0
+   177 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   178 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   179 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   180 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   181 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   182 ;;Total ram usage:        0 bytes
+   183 ;; Hardware stack levels required when called:    1
+   184 ;; This function calls:
+   185 ;;		_debounce
+   186 ;;		_initialise
+   187 ;; This function is called by:
+   188 ;;		Startup code after reset
+   189 ;; This function uses a non-reentrant model
+   190 ;;
+   191                           
+   192                           	psect	text0
+   193  00BB64                     __ptext0:
+   194                           	opt callstack 0
+   195  00BB64                     _main:
+   196                           	opt callstack 30
+   197  00BB64  EC93  F05D         	call	_initialise	;wreg free
+   198  00BB68                     l837:
+   199  00BB68  0E01               	movlw	low _displaynumber
+   200  00BB6A  240E               	addwf	_minUnits^0,w,c
+   201  00BB6C  6ED9               	movwf	fsr2l,c
+   202  00BB6E  6ADA               	clrf	fsr2h,c
+   203  00BB70  0E00               	movlw	high _displaynumber
+   204  00BB72  22DA               	addwfc	fsr2h,f,c
+   205  00BB74  50DF               	movf	indf2,w,c
+   206  00BB76  6E80               	movwf	128,c	;volatile
+   207  00BB78  A084               	btfss	132,0,c	;volatile
+   208  00BB7A  EFC1  F05D         	goto	u21
+   209  00BB7E  EFC3  F05D         	goto	u20
+   210  00BB82                     u21:
+   211  00BB82  EFC5  F05D         	goto	l843
+   212  00BB86                     u20:
+   213  00BB86  EC6A  F05D         	call	_debounce	;wreg free
+   214  00BB8A                     l843:
+   215  00BB8A  A084               	btfss	132,0,c	;volatile
+   216  00BB8C  EFCA  F05D         	goto	u31
+   217  00BB90  EFCC  F05D         	goto	u30
+   218  00BB94                     u31:
+   219  00BB94  EFDC  F05D         	goto	l849
+   220  00BB98                     u30:
+   221  00BB98  2A0E               	incf	_minUnits^0,f,c
+   222  00BB9A                     l65:
+   223  00BB9A  B084               	btfsc	132,0,c	;volatile
+   224  00BB9C  EFD2  F05D         	goto	u41
+   225  00BBA0  EFD4  F05D         	goto	u40
+   226  00BBA4                     u41:
+   227  00BBA4  EFCD  F05D         	goto	l65
+   228  00BBA8                     u40:
+   229  00BBA8  0E01               	movlw	low _displaynumber
+   230  00BBAA  240E               	addwf	_minUnits^0,w,c
+   231  00BBAC  6ED9               	movwf	fsr2l,c
+   232  00BBAE  6ADA               	clrf	fsr2h,c
+   233  00BBB0  0E00               	movlw	high _displaynumber
+   234  00BBB2  22DA               	addwfc	fsr2h,f,c
+   235  00BBB4  50DF               	movf	indf2,w,c
+   236  00BBB6  6E80               	movwf	128,c	;volatile
+   237  00BBB8                     l849:
+   238  00BBB8  A284               	btfss	132,1,c	;volatile
+   239  00BBBA  EFE1  F05D         	goto	u51
+   240  00BBBE  EFE3  F05D         	goto	u50
+   241  00BBC2                     u51:
+   242  00BBC2  EFE5  F05D         	goto	l853
+   243  00BBC6                     u50:
+   244  00BBC6  EC6A  F05D         	call	_debounce	;wreg free
+   245  00BBCA                     l853:
+   246  00BBCA  A284               	btfss	132,1,c	;volatile
+   247  00BBCC  EFEA  F05D         	goto	u61
+   248  00BBD0  EFEC  F05D         	goto	u60
+   249  00BBD4                     u61:
+   250  00BBD4  EF08  F05E         	goto	l863
+   251  00BBD8                     u60:
+   252  00BBD8  500E               	movf	_minUnits^0,w,c
+   253  00BBDA  B4D8               	btfsc	status,2,c
+   254  00BBDC  EFF2  F05D         	goto	u71
+   255  00BBE0  EFF4  F05D         	goto	u70
+   256  00BBE4                     u71:
+   257  00BBE4  EFF7  F05D         	goto	l859
+   258  00BBE8                     u70:
+   259  00BBE8  060E               	decf	_minUnits^0,f,c
+   260  00BBEA  EFF9  F05D         	goto	l72
+   261  00BBEE                     l859:
+   262  00BBEE  0E00               	movlw	0
+   263  00BBF0  6E0E               	movwf	_minUnits^0,c
+   264  00BBF2                     l72:
+   265  00BBF2  B284               	btfsc	132,1,c	;volatile
+   266  00BBF4  EFFE  F05D         	goto	u81
+   267  00BBF8  EF00  F05E         	goto	u80
+   268  00BBFC                     u81:
+   269  00BBFC  EFF9  F05D         	goto	l72
+   270  00BC00                     u80:
+   271  00BC00  0E01               	movlw	low _displaynumber
+   272  00BC02  240E               	addwf	_minUnits^0,w,c
+   273  00BC04  6ED9               	movwf	fsr2l,c
+   274  00BC06  6ADA               	clrf	fsr2h,c
+   275  00BC08  0E00               	movlw	high _displaynumber
+   276  00BC0A  22DA               	addwfc	fsr2h,f,c
+   277  00BC0C  50DF               	movf	indf2,w,c
+   278  00BC0E  6E80               	movwf	128,c	;volatile
+   279  00BC10                     l863:
+   280  00BC10  A484               	btfss	132,2,c	;volatile
+   281  00BC12  EF0D  F05E         	goto	u91
+   282  00BC16  EF0F  F05E         	goto	u90
+   283  00BC1A                     u91:
+   284  00BC1A  EF11  F05E         	goto	l867
+   285  00BC1E                     u90:
+   286  00BC1E  EC6A  F05D         	call	_debounce	;wreg free
+   287  00BC22                     l867:
+   288  00BC22  A484               	btfss	132,2,c	;volatile
+   289  00BC24  EF16  F05E         	goto	u101
+   290  00BC28  EF18  F05E         	goto	u100
+   291  00BC2C                     u101:
+   292  00BC2C  EFB4  F05D         	goto	l837
+   293  00BC30                     u100:
+   294  00BC30                     l78:
+   295  00BC30  B484               	btfsc	132,2,c	;volatile
+   296  00BC32  EF1D  F05E         	goto	u111
+   297  00BC36  EF1F  F05E         	goto	u110
+   298  00BC3A                     u111:
+   299  00BC3A  EF18  F05E         	goto	l78
+   300  00BC3E                     u110:
+   301  00BC3E  0E01               	movlw	low _displaynumber
+   302  00BC40  240D               	addwf	_minTens^0,w,c
+   303  00BC42  6ED9               	movwf	fsr2l,c
+   304  00BC44  6ADA               	clrf	fsr2h,c
+   305  00BC46  0E00               	movlw	high _displaynumber
+   306  00BC48  22DA               	addwfc	fsr2h,f,c
+   307  00BC4A  50DF               	movf	indf2,w,c
+   308  00BC4C  6E81               	movwf	129,c	;volatile
+   309  00BC4E  A084               	btfss	132,0,c	;volatile
+   310  00BC50  EF2C  F05E         	goto	u121
+   311  00BC54  EF2E  F05E         	goto	u120
+   312  00BC58                     u121:
+   313  00BC58  EF30  F05E         	goto	l877
+   314  00BC5C                     u120:
+   315  00BC5C  EC6A  F05D         	call	_debounce	;wreg free
+   316  00BC60                     l877:
+   317  00BC60  A084               	btfss	132,0,c	;volatile
+   318  00BC62  EF35  F05E         	goto	u131
+   319  00BC66  EF37  F05E         	goto	u130
+   320  00BC6A                     u131:
+   321  00BC6A  EF53  F05E         	goto	l887
+   322  00BC6E                     u130:
+   323  00BC6E  0E06               	movlw	6
+   324  00BC70  600D               	cpfslt	_minTens^0,c
+   325  00BC72  EF3D  F05E         	goto	u141
+   326  00BC76  EF3F  F05E         	goto	u140
+   327  00BC7A                     u141:
+   328  00BC7A  EF42  F05E         	goto	l883
+   329  00BC7E                     u140:
+   330  00BC7E  2A0D               	incf	_minTens^0,f,c
+   331  00BC80  EF44  F05E         	goto	l85
+   332  00BC84                     l883:
+   333  00BC84  0E06               	movlw	6
+   334  00BC86  6E0D               	movwf	_minTens^0,c
+   335  00BC88                     l85:
+   336  00BC88  B084               	btfsc	132,0,c	;volatile
+   337  00BC8A  EF49  F05E         	goto	u151
+   338  00BC8E  EF4B  F05E         	goto	u150
+   339  00BC92                     u151:
+   340  00BC92  EF44  F05E         	goto	l85
+   341  00BC96                     u150:
+   342  00BC96  0E01               	movlw	low _displaynumber
+   343  00BC98  240D               	addwf	_minTens^0,w,c
+   344  00BC9A  6ED9               	movwf	fsr2l,c
+   345  00BC9C  6ADA               	clrf	fsr2h,c
+   346  00BC9E  0E00               	movlw	high _displaynumber
+   347  00BCA0  22DA               	addwfc	fsr2h,f,c
+   348  00BCA2  50DF               	movf	indf2,w,c
+   349  00BCA4  6E81               	movwf	129,c	;volatile
+   350  00BCA6                     l887:
+   351  00BCA6  A284               	btfss	132,1,c	;volatile
+   352  00BCA8  EF58  F05E         	goto	u161
+   353  00BCAC  EF5A  F05E         	goto	u160
+   354  00BCB0                     u161:
+   355  00BCB0  EF5C  F05E         	goto	l891
+   356  00BCB4                     u160:
+   357  00BCB4  EC6A  F05D         	call	_debounce	;wreg free
+   358  00BCB8                     l891:
+   359  00BCB8  A284               	btfss	132,1,c	;volatile
+   360  00BCBA  EF61  F05E         	goto	u171
+   361  00BCBE  EF63  F05E         	goto	u170
+   362  00BCC2                     u171:
+   363  00BCC2  EF7F  F05E         	goto	l901
+   364  00BCC6                     u170:
+   365  00BCC6  500D               	movf	_minTens^0,w,c
+   366  00BCC8  B4D8               	btfsc	status,2,c
+   367  00BCCA  EF69  F05E         	goto	u181
+   368  00BCCE  EF6B  F05E         	goto	u180
+   369  00BCD2                     u181:
+   370  00BCD2  EF6E  F05E         	goto	l897
+   371  00BCD6                     u180:
+   372  00BCD6  060D               	decf	_minTens^0,f,c
+   373  00BCD8  EF70  F05E         	goto	l92
+   374  00BCDC                     l897:
+   375  00BCDC  0E00               	movlw	0
+   376  00BCDE  6E0D               	movwf	_minTens^0,c
+   377  00BCE0                     l92:
+   378  00BCE0  B284               	btfsc	132,1,c	;volatile
+   379  00BCE2  EF75  F05E         	goto	u191
+   380  00BCE6  EF77  F05E         	goto	u190
+   381  00BCEA                     u191:
+   382  00BCEA  EF70  F05E         	goto	l92
+   383  00BCEE                     u190:
+   384  00BCEE  0E01               	movlw	low _displaynumber
+   385  00BCF0  240D               	addwf	_minTens^0,w,c
+   386  00BCF2  6ED9               	movwf	fsr2l,c
+   387  00BCF4  6ADA               	clrf	fsr2h,c
+   388  00BCF6  0E00               	movlw	high _displaynumber
+   389  00BCF8  22DA               	addwfc	fsr2h,f,c
+   390  00BCFA  50DF               	movf	indf2,w,c
+   391  00BCFC  6E81               	movwf	129,c	;volatile
+   392  00BCFE                     l901:
+   393  00BCFE  A484               	btfss	132,2,c	;volatile
+   394  00BD00  EF84  F05E         	goto	u201
+   395  00BD04  EF86  F05E         	goto	u200
+   396  00BD08                     u201:
+   397  00BD08  EF88  F05E         	goto	l905
+   398  00BD0C                     u200:
+   399  00BD0C  EC6A  F05D         	call	_debounce	;wreg free
+   400  00BD10                     l905:
+   401  00BD10  A484               	btfss	132,2,c	;volatile
+   402  00BD12  EF8D  F05E         	goto	u211
+   403  00BD16  EF8F  F05E         	goto	u210
+   404  00BD1A                     u211:
+   405  00BD1A  EF18  F05E         	goto	l78
+   406  00BD1E                     u210:
+   407  00BD1E                     l98:
+   408  00BD1E  B484               	btfsc	132,2,c	;volatile
+   409  00BD20  EF94  F05E         	goto	u221
+   410  00BD24  EF96  F05E         	goto	u220
+   411  00BD28                     u221:
+   412  00BD28  EF8F  F05E         	goto	l98
+   413  00BD2C                     u220:
+   414  00BD2C  0E01               	movlw	low _displaynumber
+   415  00BD2E  240C               	addwf	_hourUnits^0,w,c
+   416  00BD30  6ED9               	movwf	fsr2l,c
+   417  00BD32  6ADA               	clrf	fsr2h,c
+   418  00BD34  0E00               	movlw	high _displaynumber
+   419  00BD36  22DA               	addwfc	fsr2h,f,c
+   420  00BD38  50DF               	movf	indf2,w,c
+   421  00BD3A  6E82               	movwf	130,c	;volatile
+   422  00BD3C  A084               	btfss	132,0,c	;volatile
+   423  00BD3E  EFA3  F05E         	goto	u231
+   424  00BD42  EFA5  F05E         	goto	u230
+   425  00BD46                     u231:
+   426  00BD46  EFA7  F05E         	goto	l915
+   427  00BD4A                     u230:
+   428  00BD4A  EC6A  F05D         	call	_debounce	;wreg free
+   429  00BD4E                     l915:
+   430  00BD4E  A084               	btfss	132,0,c	;volatile
+   431  00BD50  EFAC  F05E         	goto	u241
+   432  00BD54  EFAE  F05E         	goto	u240
+   433  00BD58                     u241:
+   434  00BD58  EFBE  F05E         	goto	l921
+   435  00BD5C                     u240:
+   436  00BD5C  2A0C               	incf	_hourUnits^0,f,c
+   437  00BD5E                     l103:
+   438  00BD5E  B084               	btfsc	132,0,c	;volatile
+   439  00BD60  EFB4  F05E         	goto	u251
+   440  00BD64  EFB6  F05E         	goto	u250
+   441  00BD68                     u251:
+   442  00BD68  EFAF  F05E         	goto	l103
+   443  00BD6C                     u250:
+   444  00BD6C  0E01               	movlw	low _displaynumber
+   445  00BD6E  240C               	addwf	_hourUnits^0,w,c
+   446  00BD70  6ED9               	movwf	fsr2l,c
+   447  00BD72  6ADA               	clrf	fsr2h,c
+   448  00BD74  0E00               	movlw	high _displaynumber
+   449  00BD76  22DA               	addwfc	fsr2h,f,c
+   450  00BD78  50DF               	movf	indf2,w,c
+   451  00BD7A  6E82               	movwf	130,c	;volatile
+   452  00BD7C                     l921:
+   453  00BD7C  A284               	btfss	132,1,c	;volatile
+   454  00BD7E  EFC3  F05E         	goto	u261
+   455  00BD82  EFC5  F05E         	goto	u260
+   456  00BD86                     u261:
+   457  00BD86  EFC7  F05E         	goto	l925
+   458  00BD8A                     u260:
+   459  00BD8A  EC6A  F05D         	call	_debounce	;wreg free
+   460  00BD8E                     l925:
+   461  00BD8E  A284               	btfss	132,1,c	;volatile
+   462  00BD90  EFCC  F05E         	goto	u271
+   463  00BD94  EFCE  F05E         	goto	u270
+   464  00BD98                     u271:
+   465  00BD98  EFEA  F05E         	goto	l935
+   466  00BD9C                     u270:
+   467  00BD9C  500C               	movf	_hourUnits^0,w,c
+   468  00BD9E  B4D8               	btfsc	status,2,c
+   469  00BDA0  EFD4  F05E         	goto	u281
+   470  00BDA4  EFD6  F05E         	goto	u280
+   471  00BDA8                     u281:
+   472  00BDA8  EFD9  F05E         	goto	l931
+   473  00BDAC                     u280:
+   474  00BDAC  060C               	decf	_hourUnits^0,f,c
+   475  00BDAE  EFDB  F05E         	goto	l110
+   476  00BDB2                     l931:
+   477  00BDB2  0E00               	movlw	0
+   478  00BDB4  6E0C               	movwf	_hourUnits^0,c
+   479  00BDB6                     l110:
+   480  00BDB6  B284               	btfsc	132,1,c	;volatile
+   481  00BDB8  EFE0  F05E         	goto	u291
+   482  00BDBC  EFE2  F05E         	goto	u290
+   483  00BDC0                     u291:
+   484  00BDC0  EFDB  F05E         	goto	l110
+   485  00BDC4                     u290:
+   486  00BDC4  0E01               	movlw	low _displaynumber
+   487  00BDC6  240C               	addwf	_hourUnits^0,w,c
+   488  00BDC8  6ED9               	movwf	fsr2l,c
+   489  00BDCA  6ADA               	clrf	fsr2h,c
+   490  00BDCC  0E00               	movlw	high _displaynumber
+   491  00BDCE  22DA               	addwfc	fsr2h,f,c
+   492  00BDD0  50DF               	movf	indf2,w,c
+   493  00BDD2  6E82               	movwf	130,c	;volatile
+   494  00BDD4                     l935:
+   495  00BDD4  A484               	btfss	132,2,c	;volatile
+   496  00BDD6  EFEF  F05E         	goto	u301
+   497  00BDDA  EFF1  F05E         	goto	u300
+   498  00BDDE                     u301:
+   499  00BDDE  EFF3  F05E         	goto	l939
+   500  00BDE2                     u300:
+   501  00BDE2  EC6A  F05D         	call	_debounce	;wreg free
+   502  00BDE6                     l939:
+   503  00BDE6  A484               	btfss	132,2,c	;volatile
+   504  00BDE8  EFF8  F05E         	goto	u311
+   505  00BDEC  EFFA  F05E         	goto	u310
+   506  00BDF0                     u311:
+   507  00BDF0  EF8F  F05E         	goto	l98
+   508  00BDF4                     u310:
+   509  00BDF4                     l116:
+   510  00BDF4  B484               	btfsc	132,2,c	;volatile
+   511  00BDF6  EFFF  F05E         	goto	u321
+   512  00BDFA  EF01  F05F         	goto	u320
+   513  00BDFE                     u321:
+   514  00BDFE  EFFA  F05E         	goto	l116
+   515  00BE02                     u320:
+   516  00BE02  0E01               	movlw	low _displaynumber
+   517  00BE04  240B               	addwf	_hourTens^0,w,c
+   518  00BE06  6ED9               	movwf	fsr2l,c
+   519  00BE08  6ADA               	clrf	fsr2h,c
+   520  00BE0A  0E00               	movlw	high _displaynumber
+   521  00BE0C  22DA               	addwfc	fsr2h,f,c
+   522  00BE0E  50DF               	movf	indf2,w,c
+   523  00BE10  6E83               	movwf	131,c	;volatile
+   524  00BE12  A084               	btfss	132,0,c	;volatile
+   525  00BE14  EF0E  F05F         	goto	u331
+   526  00BE18  EF10  F05F         	goto	u330
+   527  00BE1C                     u331:
+   528  00BE1C  EF12  F05F         	goto	l949
+   529  00BE20                     u330:
+   530  00BE20  EC6A  F05D         	call	_debounce	;wreg free
+   531  00BE24                     l949:
+   532  00BE24  A084               	btfss	132,0,c	;volatile
+   533  00BE26  EF17  F05F         	goto	u341
+   534  00BE2A  EF19  F05F         	goto	u340
+   535  00BE2E                     u341:
+   536  00BE2E  EF35  F05F         	goto	l959
+   537  00BE32                     u340:
+   538  00BE32  0E02               	movlw	2
+   539  00BE34  600B               	cpfslt	_hourTens^0,c
+   540  00BE36  EF1F  F05F         	goto	u351
+   541  00BE3A  EF21  F05F         	goto	u350
+   542  00BE3E                     u351:
+   543  00BE3E  EF24  F05F         	goto	l955
+   544  00BE42                     u350:
+   545  00BE42  2A0B               	incf	_hourTens^0,f,c
+   546  00BE44  EF26  F05F         	goto	l123
+   547  00BE48                     l955:
+   548  00BE48  0E02               	movlw	2
+   549  00BE4A  6E0B               	movwf	_hourTens^0,c
+   550  00BE4C                     l123:
+   551  00BE4C  B084               	btfsc	132,0,c	;volatile
+   552  00BE4E  EF2B  F05F         	goto	u361
+   553  00BE52  EF2D  F05F         	goto	u360
+   554  00BE56                     u361:
+   555  00BE56  EF26  F05F         	goto	l123
+   556  00BE5A                     u360:
+   557  00BE5A  0E01               	movlw	low _displaynumber
+   558  00BE5C  240B               	addwf	_hourTens^0,w,c
+   559  00BE5E  6ED9               	movwf	fsr2l,c
+   560  00BE60  6ADA               	clrf	fsr2h,c
+   561  00BE62  0E00               	movlw	high _displaynumber
+   562  00BE64  22DA               	addwfc	fsr2h,f,c
+   563  00BE66  50DF               	movf	indf2,w,c
+   564  00BE68  6E83               	movwf	131,c	;volatile
+   565  00BE6A                     l959:
+   566  00BE6A  A284               	btfss	132,1,c	;volatile
+   567  00BE6C  EF3A  F05F         	goto	u371
+   568  00BE70  EF3C  F05F         	goto	u370
+   569  00BE74                     u371:
+   570  00BE74  EF3E  F05F         	goto	l963
+   571  00BE78                     u370:
+   572  00BE78  EC6A  F05D         	call	_debounce	;wreg free
+   573  00BE7C                     l963:
+   574  00BE7C  A284               	btfss	132,1,c	;volatile
+   575  00BE7E  EF43  F05F         	goto	u381
+   576  00BE82  EF45  F05F         	goto	u380
+   577  00BE86                     u381:
+   578  00BE86  EF61  F05F         	goto	l973
+   579  00BE8A                     u380:
+   580  00BE8A  500B               	movf	_hourTens^0,w,c
+   581  00BE8C  B4D8               	btfsc	status,2,c
+   582  00BE8E  EF4B  F05F         	goto	u391
+   583  00BE92  EF4D  F05F         	goto	u390
+   584  00BE96                     u391:
+   585  00BE96  EF50  F05F         	goto	l969
+   586  00BE9A                     u390:
+   587  00BE9A  060B               	decf	_hourTens^0,f,c
+   588  00BE9C  EF52  F05F         	goto	l130
+   589  00BEA0                     l969:
+   590  00BEA0  0E00               	movlw	0
+   591  00BEA2  6E0B               	movwf	_hourTens^0,c
+   592  00BEA4                     l130:
+   593  00BEA4  B284               	btfsc	132,1,c	;volatile
+   594  00BEA6  EF57  F05F         	goto	u401
+   595  00BEAA  EF59  F05F         	goto	u400
+   596  00BEAE                     u401:
+   597  00BEAE  EF52  F05F         	goto	l130
+   598  00BEB2                     u400:
+   599  00BEB2  0E01               	movlw	low _displaynumber
+   600  00BEB4  240B               	addwf	_hourTens^0,w,c
+   601  00BEB6  6ED9               	movwf	fsr2l,c
+   602  00BEB8  6ADA               	clrf	fsr2h,c
+   603  00BEBA  0E00               	movlw	high _displaynumber
+   604  00BEBC  22DA               	addwfc	fsr2h,f,c
+   605  00BEBE  50DF               	movf	indf2,w,c
+   606  00BEC0  6E83               	movwf	131,c	;volatile
+   607  00BEC2                     l973:
+   608  00BEC2  A484               	btfss	132,2,c	;volatile
+   609  00BEC4  EF66  F05F         	goto	u411
+   610  00BEC8  EF68  F05F         	goto	u410
+   611  00BECC                     u411:
+   612  00BECC  EF6A  F05F         	goto	l977
+   613  00BED0                     u410:
+   614  00BED0  EC6A  F05D         	call	_debounce	;wreg free
+   615  00BED4                     l977:
+   616  00BED4  A484               	btfss	132,2,c	;volatile
+   617  00BED6  EF6F  F05F         	goto	u421
+   618  00BEDA  EF71  F05F         	goto	u420
+   619  00BEDE                     u421:
+   620  00BEDE  EFFA  F05E         	goto	l116
+   621  00BEE2                     u420:
+   622  00BEE2                     l981:
+   623  00BEE2  0E00               	movlw	0
+   624  00BEE4  6E0F               	movwf	_m^0,c
+   625  00BEE6                     l987:
+   626  00BEE6  0E00               	movlw	0
+   627  00BEE8  6E10               	movwf	_n^0,c
+   628  00BEEA                     l993:
+   629  00BEEA  0E00               	movlw	0
+   630  00BEEC  6ED7               	movwf	215,c	;volatile
+   631  00BEEE  0E00               	movlw	0
+   632  00BEF0  6ED6               	movwf	214,c	;volatile
+   633  00BEF2                     l995:
+   634  00BEF2  50D7               	movf	215,w,c	;volatile
+   635  00BEF4  E108               	bnz	u430
+   636  00BEF6  28D6               	incf	214,w,c	;volatile
+   637  00BEF8  A0D8               	btfss	status,0,c
+   638  00BEFA  EF81  F05F         	goto	u431
+   639  00BEFE  EF83  F05F         	goto	u430
+   640  00BF02                     u431:
+   641  00BF02  EF79  F05F         	goto	l995
+   642  00BF06                     u430:
+   643  00BF06  2A10               	incf	_n^0,f,c
+   644  00BF08  0E1C               	movlw	28
+   645  00BF0A  6410               	cpfsgt	_n^0,c
+   646  00BF0C  EF8A  F05F         	goto	u441
+   647  00BF10  EF8C  F05F         	goto	u440
+   648  00BF14                     u441:
+   649  00BF14  EF75  F05F         	goto	l993
+   650  00BF18                     u440:
+   651  00BF18  2A0F               	incf	_m^0,f,c
+   652  00BF1A  0E3B               	movlw	59
+   653  00BF1C  640F               	cpfsgt	_m^0,c
+   654  00BF1E  EF93  F05F         	goto	u451
+   655  00BF22  EF95  F05F         	goto	u450
+   656  00BF26                     u451:
+   657  00BF26  EF73  F05F         	goto	l987
+   658  00BF2A                     u450:
+   659  00BF2A  2A0E               	incf	_minUnits^0,f,c
+   660  00BF2C  0E0A               	movlw	10
+   661  00BF2E  180E               	xorwf	_minUnits^0,w,c
+   662  00BF30  A4D8               	btfss	status,2,c
+   663  00BF32  EF9D  F05F         	goto	u461
+   664  00BF36  EF9F  F05F         	goto	u460
+   665  00BF3A                     u461:
+   666  00BF3A  EFDC  F05F         	goto	l1033
+   667  00BF3E                     u460:
+   668  00BF3E  0E00               	movlw	0
+   669  00BF40  6E0E               	movwf	_minUnits^0,c
+   670  00BF42  2A0D               	incf	_minTens^0,f,c
+   671  00BF44  0E06               	movlw	6
+   672  00BF46  180D               	xorwf	_minTens^0,w,c
+   673  00BF48  A4D8               	btfss	status,2,c
+   674  00BF4A  EFA9  F05F         	goto	u471
+   675  00BF4E  EFAB  F05F         	goto	u470
+   676  00BF52                     u471:
+   677  00BF52  EFDC  F05F         	goto	l1033
+   678  00BF56                     u470:
+   679  00BF56  0E00               	movlw	0
+   680  00BF58  6E0D               	movwf	_minTens^0,c
+   681  00BF5A  2A0C               	incf	_hourUnits^0,f,c
+   682  00BF5C  0E02               	movlw	2
+   683  00BF5E  600B               	cpfslt	_hourTens^0,c
+   684  00BF60  EFB4  F05F         	goto	u481
+   685  00BF64  EFB6  F05F         	goto	u480
+   686  00BF68                     u481:
+   687  00BF68  EFC4  F05F         	goto	l1027
+   688  00BF6C                     u480:
+   689  00BF6C  0E0A               	movlw	10
+   690  00BF6E  180C               	xorwf	_hourUnits^0,w,c
+   691  00BF70  A4D8               	btfss	status,2,c
+   692  00BF72  EFBD  F05F         	goto	u491
+   693  00BF76  EFBF  F05F         	goto	u490
+   694  00BF7A                     u491:
+   695  00BF7A  EFDC  F05F         	goto	l1033
+   696  00BF7E                     u490:
+   697  00BF7E  0E00               	movlw	0
+   698  00BF80  6E0C               	movwf	_hourUnits^0,c
+   699  00BF82  2A0B               	incf	_hourTens^0,f,c
+   700  00BF84  EFDC  F05F         	goto	l1033
+   701  00BF88                     l1027:
+   702  00BF88  0E02               	movlw	2
+   703  00BF8A  180B               	xorwf	_hourTens^0,w,c
+   704  00BF8C  A4D8               	btfss	status,2,c
+   705  00BF8E  EFCB  F05F         	goto	u501
+   706  00BF92  EFCD  F05F         	goto	u500
+   707  00BF96                     u501:
+   708  00BF96  EFDC  F05F         	goto	l145
+   709  00BF9A                     u500:
+   710  00BF9A  0E04               	movlw	4
+   711  00BF9C  180C               	xorwf	_hourUnits^0,w,c
+   712  00BF9E  A4D8               	btfss	status,2,c
+   713  00BFA0  EFD4  F05F         	goto	u511
+   714  00BFA4  EFD6  F05F         	goto	u510
+   715  00BFA8                     u511:
+   716  00BFA8  EFDC  F05F         	goto	l145
+   717  00BFAC                     u510:
+   718  00BFAC  0E00               	movlw	0
+   719  00BFAE  6E0C               	movwf	_hourUnits^0,c
+   720  00BFB0  0E00               	movlw	0
+   721  00BFB2  6E0B               	movwf	_hourTens^0,c
+   722  00BFB4  EFDC  F05F         	goto	l1033
+   723  00BFB8                     l145:
+   724  00BFB8                     l1033:
+   725  00BFB8  0E01               	movlw	low _displaynumber
+   726  00BFBA  240E               	addwf	_minUnits^0,w,c
+   727  00BFBC  6ED9               	movwf	fsr2l,c
+   728  00BFBE  6ADA               	clrf	fsr2h,c
+   729  00BFC0  0E00               	movlw	high _displaynumber
+   730  00BFC2  22DA               	addwfc	fsr2h,f,c
+   731  00BFC4  50DF               	movf	indf2,w,c
+   732  00BFC6  6E80               	movwf	128,c	;volatile
+   733  00BFC8  0E01               	movlw	low _displaynumber
+   734  00BFCA  240D               	addwf	_minTens^0,w,c
+   735  00BFCC  6ED9               	movwf	fsr2l,c
+   736  00BFCE  6ADA               	clrf	fsr2h,c
+   737  00BFD0  0E00               	movlw	high _displaynumber
+   738  00BFD2  22DA               	addwfc	fsr2h,f,c
+   739  00BFD4  50DF               	movf	indf2,w,c
+   740  00BFD6  6E81               	movwf	129,c	;volatile
+   741  00BFD8  0E01               	movlw	low _displaynumber
+   742  00BFDA  240C               	addwf	_hourUnits^0,w,c
+   743  00BFDC  6ED9               	movwf	fsr2l,c
+   744  00BFDE  6ADA               	clrf	fsr2h,c
+   745  00BFE0  0E00               	movlw	high _displaynumber
+   746  00BFE2  22DA               	addwfc	fsr2h,f,c
+   747  00BFE4  50DF               	movf	indf2,w,c
+   748  00BFE6  6E82               	movwf	130,c	;volatile
+   749  00BFE8  0E01               	movlw	low _displaynumber
+   750  00BFEA  240B               	addwf	_hourTens^0,w,c
+   751  00BFEC  6ED9               	movwf	fsr2l,c
+   752  00BFEE  6ADA               	clrf	fsr2h,c
+   753  00BFF0  0E00               	movlw	high _displaynumber
+   754  00BFF2  22DA               	addwfc	fsr2h,f,c
+   755  00BFF4  50DF               	movf	indf2,w,c
+   756  00BFF6  6E83               	movwf	131,c	;volatile
+   757  00BFF8  EF71  F05F         	goto	l981
+   758  00BFFC  EF00  F000         	goto	start
+   759  00C000                     __end_of_main:
+   760                           	opt callstack 0
+   761                           
+   762 ;; *************** function _initialise *****************
+   763 ;; Defined at:
+   764 ;;		line 21 in file "7seg24hrClock.c"
+   765 ;; Parameters:    Size  Location     Type
+   766 ;;		None
+   767 ;; Auto vars:     Size  Location     Type
+   768 ;;		None
+   769 ;; Return value:  Size  Location     Type
+   770 ;;                  1    wreg      void 
+   771 ;; Registers used:
+   772 ;;		wreg, status,2
+   773 ;; Tracked objects:
+   774 ;;		On entry : 0/0
+   775 ;;		On exit  : 0/0
+   776 ;;		Unchanged: 0/0
+   777 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   778 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   779 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   780 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   781 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   782 ;;Total ram usage:        0 bytes
+   783 ;; Hardware stack levels used:    1
+   784 ;; This function calls:
+   785 ;;		Nothing
+   786 ;; This function is called by:
+   787 ;;		_main
+   788 ;; This function uses a non-reentrant model
+   789 ;;
+   790                           
+   791                           	psect	text1
+   792  00BB26                     __ptext1:
+   793                           	opt callstack 0
+   794  00BB26                     _initialise:
+   795                           	opt callstack 30
+   796  00BB26  0E00               	movlw	0
+   797  00BB28  6E80               	movwf	128,c	;volatile
+   798  00BB2A  0E00               	movlw	0
+   799  00BB2C  6E81               	movwf	129,c	;volatile
+   800  00BB2E  0E00               	movlw	0
+   801  00BB30  6E82               	movwf	130,c	;volatile
+   802  00BB32  0E00               	movlw	0
+   803  00BB34  6E83               	movwf	131,c	;volatile
+   804  00BB36  0E00               	movlw	0
+   805  00BB38  6E84               	movwf	132,c	;volatile
+   806  00BB3A  0E00               	movlw	0
+   807  00BB3C  6E92               	movwf	146,c	;volatile
+   808  00BB3E  0E00               	movlw	0
+   809  00BB40  6E93               	movwf	147,c	;volatile
+   810  00BB42  0E00               	movlw	0
+   811  00BB44  6E94               	movwf	148,c	;volatile
+   812  00BB46  0E00               	movlw	0
+   813  00BB48  6E95               	movwf	149,c	;volatile
+   814  00BB4A  0E03               	movlw	3
+   815  00BB4C  6E96               	movwf	150,c	;volatile
+   816  00BB4E  0E00               	movlw	0
+   817  00BB50  6EC2               	movwf	194,c	;volatile
+   818  00BB52  0E0F               	movlw	15
+   819  00BB54  6EC1               	movwf	193,c	;volatile
+   820  00BB56  0E00               	movlw	0
+   821  00BB58  6E9B               	movwf	155,c	;volatile
+   822  00BB5A  0E70               	movlw	112
+   823  00BB5C  6ED3               	movwf	211,c	;volatile
+   824  00BB5E  0EC7               	movlw	199
+   825  00BB60  6ED5               	movwf	213,c	;volatile
+   826  00BB62  0012               	return		;funcret
+   827  00BB64                     __end_of_initialise:
+   828                           	opt callstack 0
+   829                           
+   830 ;; *************** function _debounce *****************
+   831 ;; Defined at:
+   832 ;;		line 39 in file "7seg24hrClock.c"
+   833 ;; Parameters:    Size  Location     Type
+   834 ;;		None
+   835 ;; Auto vars:     Size  Location     Type
+   836 ;;		None
+   837 ;; Return value:  Size  Location     Type
+   838 ;;                  1    wreg      void 
+   839 ;; Registers used:
+   840 ;;		wreg, status,2, status,0
+   841 ;; Tracked objects:
+   842 ;;		On entry : 0/0
+   843 ;;		On exit  : 0/0
+   844 ;;		Unchanged: 0/0
+   845 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   846 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   847 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   848 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   849 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   850 ;;Total ram usage:        0 bytes
+   851 ;; Hardware stack levels used:    1
+   852 ;; This function calls:
+   853 ;;		Nothing
+   854 ;; This function is called by:
+   855 ;;		_main
+   856 ;; This function uses a non-reentrant model
+   857 ;;
+   858                           
+   859                           	psect	text2
+   860  00BAD4                     __ptext2:
+   861                           	opt callstack 0
+   862  00BAD4                     _debounce:
+   863                           	opt callstack 30
+   864  00BAD4  0E00               	movlw	0
+   865  00BAD6  6ED7               	movwf	215,c	;volatile
+   866  00BAD8  0E00               	movlw	0
+   867  00BADA  6ED6               	movwf	214,c	;volatile
+   868  00BADC                     l833:
+   869  00BADC  50D7               	movf	215,w,c	;volatile
+   870  00BADE  E109               	bnz	u10
+   871  00BAE0  0E65               	movlw	101
+   872  00BAE2  5CD6               	subwf	214,w,c	;volatile
+   873  00BAE4  A0D8               	btfss	status,0,c
+   874  00BAE6  EF77  F05D         	goto	u11
+   875  00BAEA  EF79  F05D         	goto	u10
+   876  00BAEE                     u11:
+   877  00BAEE  EF6E  F05D         	goto	l833
+   878  00BAF2                     u10:
+   879  00BAF2  0012               	return		;funcret
+   880  00BAF4                     __end_of_debounce:
+   881                           	opt callstack 0
+   882  0000                     
+   883                           	psect	rparam
+   884  0000                     tosu	equ	0xFFF
+   885                           tosh	equ	0xFFE
+   886                           tosl	equ	0xFFD
+   887                           stkptr	equ	0xFFC
+   888                           pclatu	equ	0xFFB
+   889                           pclath	equ	0xFFA
+   890                           pcl	equ	0xFF9
+   891                           tblptru	equ	0xFF8
+   892                           tblptrh	equ	0xFF7
+   893                           tblptrl	equ	0xFF6
+   894                           tablat	equ	0xFF5
+   895                           prodh	equ	0xFF4
+   896                           prodl	equ	0xFF3
+   897                           indf0	equ	0xFEF
+   898                           postinc0	equ	0xFEE
+   899                           postdec0	equ	0xFED
+   900                           preinc0	equ	0xFEC
+   901                           plusw0	equ	0xFEB
+   902                           fsr0h	equ	0xFEA
+   903                           fsr0l	equ	0xFE9
+   904                           wreg	equ	0xFE8
+   905                           indf1	equ	0xFE7
+   906                           postinc1	equ	0xFE6
+   907                           postdec1	equ	0xFE5
+   908                           preinc1	equ	0xFE4
+   909                           plusw1	equ	0xFE3
+   910                           fsr1h	equ	0xFE2
+   911                           fsr1l	equ	0xFE1
+   912                           bsr	equ	0xFE0
+   913                           indf2	equ	0xFDF
+   914                           postinc2	equ	0xFDE
+   915                           postdec2	equ	0xFDD
+   916                           preinc2	equ	0xFDC
+   917                           plusw2	equ	0xFDB
+   918                           fsr2h	equ	0xFDA
+   919                           fsr2l	equ	0xFD9
+   920                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        10
+    BSS         6
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127      0      16
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15          128      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                           _debounce
+                         _initialise
+ ---------------------------------------------------------------------------------
+ (1) _initialise                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _debounce                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _debounce
+   _initialise
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F7F      0       0      37        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK15           80      0       0      35        0.0%
+BANK15              80      0       0      36        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F      0      10       1       12.6%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      10      34        0.0%
+DATA                 0      0      10       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Mon Mar 09 11:13:37 2020
+
+                      _m 000F                        _n 0010                       l55 BAF2  
+                     l72 BBF2                       l49 BB62                       l65 BB9A  
+                     l92 BCE0                       l85 BC88                       l78 BC30  
+                     l98 BD1E                       u10 BAF2                       u11 BAEE  
+                     u20 BB86                       u21 BB82                       u30 BB98  
+                     u31 BB94                       u40 BBA8                       u41 BBA4  
+                     u50 BBC6                       u51 BBC2                       u60 BBD8  
+                     u61 BBD4                       u70 BBE8                       u71 BBE4  
+                     u80 BC00                       u81 BBFC                       u90 BC1E  
+                     u91 BC1A              __CFG_BORV$3 000000             __CFG_CP0$OFF 000000  
+           __CFG_CP1$OFF 000000             __CFG_CP2$OFF 000000                      l110 BDB6  
+                    l103 BD5E                      l130 BEA4                      l123 BE4C  
+                    l116 BDF4                      l145 BFB8                      l901 BCFE  
+                    l831 BAD4                      l911 BD3C                      l903 BD0C  
+                    l833 BADC                      l921 BD7C                      l913 BD4A  
+                    l905 BD10                      l841 BB86                      l931 BDB2  
+                    l923 BD8A                      l915 BD4E                      l851 BBC6  
+                    l843 BB8A                      l835 BB64                      l829 BB26  
+                    l933 BDC4                      l925 BD8E                      l917 BD5C  
+                    l909 BD2C                      l861 BC00                      l853 BBCA  
+                    l845 BB98                      l837 BB68                      l951 BE32  
+                    l943 BE02                      l927 BD9C                      l935 BDD4  
+                    l919 BD6C                      l871 BC3E                      l855 BBD8  
+                    l863 BC10                      l847 BBA8                      l839 BB78  
+                    l961 BE78                      l953 BE42                      l945 BE12  
+                    l937 BDE2                      l929 BDAC                      l881 BC7E  
+                    l873 BC4E                      l865 BC1E                      l857 BBE8  
+                    l849 BBB8                      l971 BEB2                      l963 BE7C  
+                    l955 BE48                      l947 BE20                      l939 BDE6  
+                    l891 BCB8                      l883 BC84                      l875 BC5C  
+                    l867 BC22                      l859 BBEE                      l981 BEE2  
+                    l965 BE8A                      l973 BEC2                      l957 BE5A  
+                    l949 BE24                      l893 BCC6                      l885 BC96  
+                    l877 BC60                      l975 BED0                      l967 BE9A  
+                    l959 BE6A                      l895 BCD6                      l879 BC6E  
+                    l887 BCA6                      l993 BEEA                      l977 BED4  
+                    l969 BEA0                      l897 BCDC                      l889 BCB4  
+                    l995 BEF2                      l987 BEE6                      l899 BCEE  
+                    l997 BF06                      l999 BF08             __CFG_CPB$OFF 000000  
+                    u100 BC30                      u101 BC2C                      u110 BC3E  
+                    u111 BC3A                      u200 BD0C                      u120 BC5C  
+                    u201 BD08                      u121 BC58                      u210 BD1E  
+                    u130 BC6E                      u211 BD1A                      u131 BC6A  
+                    u300 BDE2                      u220 BD2C                      u140 BC7E  
+                    u301 BDDE                      u221 BD28                      u141 BC7A  
+                    u310 BDF4                      u230 BD4A                      u150 BC96  
+                    u311 BDF0                      u231 BD46                      u151 BC92  
+                    u400 BEB2                      u320 BE02                      u240 BD5C  
+                    u160 BCB4                      u401 BEAE                      u321 BDFE  
+                    u241 BD58                      u161 BCB0                      u410 BED0  
+                    u330 BE20                      u250 BD6C                      u170 BCC6  
+                    u411 BECC                      u331 BE1C                      u251 BD68  
+                    u171 BCC2                      u500 BF9A                      u420 BEE2  
+                    u340 BE32                      u260 BD8A                      u180 BCD6  
+                    u501 BF96                      u421 BEDE                      u341 BE2E  
+                    u261 BD86                      u181 BCD2                      u510 BFAC  
+                    u430 BF06                      u350 BE42                      u270 BD9C  
+                    u190 BCEE                      u511 BFA8                      u431 BF02  
+                    u351 BE3E                      u271 BD98                      u191 BCEA  
+                    u440 BF18                      u360 BE5A                      u280 BDAC  
+                    u441 BF14                      u361 BE56                      u281 BDA8  
+                    u450 BF2A                      u370 BE78                      u290 BDC4  
+           __CFG_CPD$OFF 000000                      u451 BF26                      u371 BE74  
+                    u291 BDC0                      u460 BF3E                      u380 BE8A  
+                    u461 BF3A                      u381 BE86                      u470 BF56  
+                    u390 BE9A                      u471 BF52                      u391 BE96  
+                    u480 BF6C                      u481 BF68                      u490 BF7E  
+                    u491 BF7A             __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000  
+                   l1001 BF18                     l1011 BF42                     l1003 BF1A  
+                   l1021 BF6C                     l1013 BF44                     l1005 BF2A  
+                   l1031 BFAC                     l1023 BF7E                     l1015 BF56  
+                   l1007 BF2C                     l1025 BF82                     l1017 BF5A  
+                   l1009 BF3E                     l1033 BFB8                     l1035 BFC8  
+                   l1027 BF88                     l1019 BF5C                     l1037 BFD8  
+                   l1029 BF9A                     l1039 BFE8                     _TMR0 000FD6  
+                   _main BB64                     indf2 000FDF                     fsr1l 000FE1  
+                   fsr2l 000FD9                     start 0000            __CFG_IESO$OFF 000000  
+          __CFG_MCLRE$ON 000000             ___param_bank 000000                    ?_main 0000  
+                  _T0CON 000FD5                    _PORTA 000F80                    _PORTB 000F81  
+                  _PORTC 000F82                    _PORTD 000F83                    _PORTE 000F84  
+                  _TRISA 000F92                    _TRISB 000F93                    _TRISC 000F94  
+                  _TRISD 000F95                    _TRISE 000F96            __CFG_PWRT$OFF 000000  
+          __CFG_WRT0$OFF 000000            __CFG_WRT1$OFF 000000            __CFG_WRT2$OFF 000000  
+         __CFG_EBTR0$OFF 000000           __CFG_FCMEN$OFF 000000           __CFG_EBTR1$OFF 000000  
+         __CFG_EBTR2$OFF 000000            __CFG_WRTB$OFF 000000            __CFG_WRTC$OFF 000000  
+          __CFG_WRTD$OFF 000000           __CFG_EBTRB$OFF 000000                    tablat 000FF5  
+                  status 000FD8           __CFG_PBADEN$ON 000000          __initialization BAF4  
+           __end_of_main C000                   ??_main 0000            __activetblptr 000000  
+                 _ADCON0 000FC2                   _ADCON1 000FC1                   _OSCCON 000FD3  
+       __end_of_debounce BAF4           __CFG_XINST$OFF 000000           __CFG_STVREN$ON 000000  
+           __pdataCOMRAM 0001                   tblptrh 000FF7                   tblptrl 000FF6  
+                 tblptru 000FF8               __accesstop 0080  __end_of__initialization BB20  
+          ___rparam_used 000001           __pcstackCOMRAM 0000                ?_debounce 0000  
+                _OSCTUNE 000F9B                  __Hparam 0000                  __Lparam 0000  
+                __pcinit BAF4                  __ramtop 1000               _initialise BB26  
+                __ptext0 BB64                  __ptext1 BB26                  __ptext2 BAD4  
+                _minTens 000D               ??_debounce 0000     end_of_initialization BB20  
+                postdec1 000FE5                  postinc0 000FEE                _PORTEbits 000F84  
+          __pidataCOMRAM BACA              ?_initialise 0000      start_initialization BAF4  
+       __CFG_OSC$INTIO67 000000         __CFG_LPT1OSC$OFF 000000              __pbssCOMRAM 000B  
+      __size_of_debounce 0020      __size_of_initialise 003E        __CFG_CCP2MX$PORTC 000000  
+              _hourUnits 000C         __CFG_WDTPS$32768 000000                copy_data0 BB08  
+               __Hrparam 0000                 __Lrparam 0000       __CFG_BOREN$SBORDIS 000000  
+           ??_initialise 0000                 _debounce BAD4                 _minUnits 000E  
+          __size_of_main 049C                 _hourTens 000B       __end_of_initialise BB64  
+          _displaynumber 0001  

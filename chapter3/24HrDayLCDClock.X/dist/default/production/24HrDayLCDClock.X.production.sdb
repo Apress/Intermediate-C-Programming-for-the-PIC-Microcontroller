@@ -1,0 +1,219 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4525 ]
+[d frameptr 4065 ]
+"48 E:\MicroBookTwo\chapterPrograms\chapter3\24HrDayLCDClock.X\24HrDayLCDClcok.c
+[v _sendData sendData `(v  1 e 1 0 ]
+"58
+[v _lcdOut lcdOut `(v  1 e 1 0 ]
+"64
+[v _setUpTheLCD setUpTheLCD `(v  1 e 1 0 ]
+"77
+[v _line2 line2 `(v  1 e 1 0 ]
+"84
+[v _clearTheScreen clearTheScreen `(v  1 e 1 0 ]
+"102
+[v _shiftcurleft shiftcurleft `(v  1 e 1 0 ]
+"123
+[v _writeString writeString `(v  1 e 1 0 ]
+"132
+[v _debounce debounce `(v  1 e 1 0 ]
+"138
+[v _main main `(v  1 e 1 0 ]
+"1 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h
+[v _initialise initialise `(v  1 e 1 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"34 E:\MicroBookTwo\chapterPrograms\chapter3\24HrDayLCDClock.X\24HrDayLCDClcok.c
+[v _lcdData lcdData `uc  1 e 1 0 ]
+[v _lcdTempData lcdTempData `uc  1 e 1 0 ]
+[v _rsLine rsLine `uc  1 e 1 0 ]
+[v _daynumber daynumber `uc  1 e 1 0 ]
+"36
+[v _lcdInitialise lcdInitialise `[8]uc  1 e 8 0 ]
+"122
+[v _n n `uc  1 e 1 0 ]
+[v _secunits secunits `uc  1 e 1 0 ]
+[v _sectens sectens `uc  1 e 1 0 ]
+[v _minunits minunits `uc  1 e 1 0 ]
+[v _mintens mintens `uc  1 e 1 0 ]
+[v _hourunits hourunits `uc  1 e 1 0 ]
+[v _hourtens hourtens `uc  1 e 1 0 ]
+"52 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f4525.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+[s S106 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+"99
+[s S115 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+]
+[s S119 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SS 1 0 :1:5 
+]
+[s S122 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_SS 1 0 :1:5 
+]
+[s S125 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 nSS 1 0 :1:5 
+]
+[s S128 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 LVDIN 1 0 :1:5 
+]
+[s S131 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 HLVDIN 1 0 :1:5 
+]
+[s S134 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+`uc 1 . 1 0 :6:1 
+`uc 1 RJPU 1 0 :1:7 
+]
+[u S138 . 1 `S106 1 . 1 0 `S115 1 . 1 0 `S119 1 . 1 0 `S122 1 . 1 0 `S125 1 . 1 0 `S128 1 . 1 0 `S131 1 . 1 0 `S134 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES138  1 e 1 @3968 ]
+"189
+[v _PORTB PORTB `VEuc  1 e 1 @3969 ]
+[s S39 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"230
+[s S48 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 KBI0 1 0 :1:4 
+`uc 1 KBI1 1 0 :1:5 
+`uc 1 KBI2 1 0 :1:6 
+`uc 1 KBI3 1 0 :1:7 
+]
+[s S57 . 1 `uc 1 AN12 1 0 :1:0 
+`uc 1 AN10 1 0 :1:1 
+`uc 1 AN8 1 0 :1:2 
+`uc 1 AN9 1 0 :1:3 
+`uc 1 AN11 1 0 :1:4 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S66 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S69 . 1 `S39 1 . 1 0 `S48 1 . 1 0 `S57 1 . 1 0 `S66 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES69  1 e 1 @3969 ]
+"360
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+"535
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+"677
+[v _PORTE PORTE `VEuc  1 e 1 @3972 ]
+"1380
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1602
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1824
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2046
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2268
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"2432
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @3995 ]
+"4524
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"4609
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"5886
+[v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+"5969
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"6046
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
+"138 E:\MicroBookTwo\chapterPrograms\chapter3\24HrDayLCDClock.X\24HrDayLCDClcok.c
+[v _main main `(v  1 e 1 0 ]
+{
+"372
+} 0
+"123
+[v _writeString writeString `(v  1 e 1 0 ]
+{
+[v writeString@words words `*.32Cuc  1 p 2 0 ]
+"131
+} 0
+"102
+[v _shiftcurleft shiftcurleft `(v  1 e 1 0 ]
+{
+[v shiftcurleft@l l `uc  1 a 1 wreg ]
+[v shiftcurleft@l l `uc  1 a 1 wreg ]
+"104
+[v shiftcurleft@l l `uc  1 a 1 0 ]
+"111
+} 0
+"64
+[v _setUpTheLCD setUpTheLCD `(v  1 e 1 0 ]
+{
+"76
+} 0
+"77
+[v _line2 line2 `(v  1 e 1 0 ]
+{
+"83
+} 0
+"1 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h
+[v _initialise initialise `(v  1 e 1 0 ]
+{
+"18
+} 0
+"132 E:\MicroBookTwo\chapterPrograms\chapter3\24HrDayLCDClock.X\24HrDayLCDClcok.c
+[v _debounce debounce `(v  1 e 1 0 ]
+{
+"136
+} 0
+"84
+[v _clearTheScreen clearTheScreen `(v  1 e 1 0 ]
+{
+"92
+} 0
+"58
+[v _lcdOut lcdOut `(v  1 e 1 0 ]
+{
+"63
+} 0
+"48
+[v _sendData sendData `(v  1 e 1 0 ]
+{
+"57
+} 0

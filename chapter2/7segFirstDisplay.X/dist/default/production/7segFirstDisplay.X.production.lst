@@ -1,0 +1,595 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.35 build -356382666 
+                                                                                               Mon Mar 08 23:07:00 2021
+
+Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080246
+     1                           	processor	18F4525
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    12                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    13  0000                     _TMR0	set	4054
+    14  0000                     _ADCON0	set	4034
+    15  0000                     _ADCON1	set	4033
+    16  0000                     _OSCCON	set	4051
+    17  0000                     _OSCTUNE	set	3995
+    18  0000                     _PORTA	set	3968
+    19  0000                     _PORTAbits	set	3968
+    20  0000                     _PORTB	set	3969
+    21  0000                     _PORTC	set	3970
+    22  0000                     _PORTD	set	3971
+    23  0000                     _PORTE	set	3972
+    24  0000                     _T0CON	set	4053
+    25  0000                     _TRISA	set	3986
+    26  0000                     _TRISB	set	3987
+    27  0000                     _TRISC	set	3988
+    28  0000                     _TRISD	set	3989
+    29  0000                     _TRISE	set	3990
+    30                           
+    31                           ; #config settings
+    32  0000                     
+    33                           	psect	cinit
+    34  00BF2C                     __pcinit:
+    35                           	opt stack 0
+    36  00BF2C                     start_initialization:
+    37                           	opt stack 0
+    38  00BF2C                     __initialization:
+    39                           	opt stack 0
+    40                           
+    41                           ; Clear objects allocated to COMRAM (1 bytes)
+    42  00BF2C  6A01               	clrf	__pbssCOMRAM& (0+255),c
+    43  00BF2E                     end_of_initialization:
+    44                           	opt stack 0
+    45  00BF2E                     __end_of__initialization:
+    46                           	opt stack 0
+    47  00BF2E  0100               	movlb	0
+    48  00BF30  EFCA  F05F         	goto	_main	;jump to C main() function
+    49                           
+    50                           	psect	bssCOMRAM
+    51  000001                     __pbssCOMRAM:
+    52                           	opt stack 0
+    53  000001                     _n:
+    54                           	opt stack 0
+    55  000001                     	ds	1
+    56                           
+    57                           	psect	cstackCOMRAM
+    58  000002                     __pcstackCOMRAM:
+    59                           	opt stack 0
+    60  000002                     delay@t:
+    61                           	opt stack 0
+    62                           
+    63                           ; 1 bytes @ 0x0
+    64  000002                     	ds	1
+    65  000003                     
+    66                           ; 0 bytes @ 0x1
+    67 ;;
+    68 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    69 ;;
+    70 ;; *************** function _main *****************
+    71 ;; Defined at:
+    72 ;;		line 29 in file "7segFirstDisplayProg.c"
+    73 ;; Parameters:    Size  Location     Type
+    74 ;;		None
+    75 ;; Auto vars:     Size  Location     Type
+    76 ;;		None
+    77 ;; Return value:  Size  Location     Type
+    78 ;;		None               void
+    79 ;; Registers used:
+    80 ;;		wreg, status,2, status,0, cstack
+    81 ;; Tracked objects:
+    82 ;;		On entry : 0/0
+    83 ;;		On exit  : 0/0
+    84 ;;		Unchanged: 0/0
+    85 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+    86 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+    87 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+    88 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+    89 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+    90 ;;Total ram usage:        0 bytes
+    91 ;; Hardware stack levels required when called:    1
+    92 ;; This function calls:
+    93 ;;		_delay
+    94 ;;		_initialise
+    95 ;; This function is called by:
+    96 ;;		Startup code after reset
+    97 ;; This function uses a non-reentrant model
+    98 ;;
+    99                           
+   100                           	psect	text0
+   101  00BF94                     __ptext0:
+   102                           	opt stack 0
+   103  00BF94                     _main:
+   104                           	opt stack 30
+   105                           
+   106                           ;7segFirstDisplayProg.c: 31: initialise ();
+   107                           
+   108                           ;incstack = 0
+   109  00BF94  ECAD  F05F         	call	_initialise	;wreg free
+   110  00BF98                     l52:
+   111  00BF98  A080               	btfss	3968,0,c	;volatile
+   112  00BF9A  D7FE               	goto	l52
+   113  00BF9C                     l55:
+   114                           
+   115                           ;7segFirstDisplayProg.c: 34: {
+   116                           ;7segFirstDisplayProg.c: 35: if (PORTAbits.RA1) goto start;
+   117  00BF9C  B280               	btfsc	3968,1,c	;volatile
+   118  00BF9E  D7FC               	goto	l52
+   119                           
+   120                           ;7segFirstDisplayProg.c: 36: PORTB = 0b01000000;
+   121  00BFA0  0E40               	movlw	64
+   122  00BFA2  6E81               	movwf	3969,c	;volatile
+   123                           
+   124                           ;7segFirstDisplayProg.c: 37: delay (61);
+   125  00BFA4  0E3D               	movlw	61
+   126  00BFA6  EC9A  F05F         	call	_delay
+   127                           
+   128                           ;7segFirstDisplayProg.c: 38: PORTB = 0b01111001;
+   129  00BFAA  0E79               	movlw	121
+   130  00BFAC  6E81               	movwf	3969,c	;volatile
+   131                           
+   132                           ;7segFirstDisplayProg.c: 39: delay (61);
+   133  00BFAE  0E3D               	movlw	61
+   134  00BFB0  EC9A  F05F         	call	_delay
+   135                           
+   136                           ;7segFirstDisplayProg.c: 40: PORTB = 0b00100100;
+   137  00BFB4  0E24               	movlw	36
+   138  00BFB6  6E81               	movwf	3969,c	;volatile
+   139                           
+   140                           ;7segFirstDisplayProg.c: 41: delay (61);
+   141  00BFB8  0E3D               	movlw	61
+   142  00BFBA  EC9A  F05F         	call	_delay
+   143                           
+   144                           ;7segFirstDisplayProg.c: 42: PORTB = 0b00110000;
+   145  00BFBE  0E30               	movlw	48
+   146  00BFC0  6E81               	movwf	3969,c	;volatile
+   147                           
+   148                           ;7segFirstDisplayProg.c: 43: delay (61);
+   149  00BFC2  0E3D               	movlw	61
+   150  00BFC4  EC9A  F05F         	call	_delay
+   151                           
+   152                           ;7segFirstDisplayProg.c: 44: PORTB = 0b00011001;
+   153  00BFC8  0E19               	movlw	25
+   154  00BFCA  6E81               	movwf	3969,c	;volatile
+   155                           
+   156                           ;7segFirstDisplayProg.c: 45: delay (61);
+   157  00BFCC  0E3D               	movlw	61
+   158  00BFCE  EC9A  F05F         	call	_delay
+   159                           
+   160                           ;7segFirstDisplayProg.c: 46: PORTB = 0b00010010;
+   161  00BFD2  0E12               	movlw	18
+   162  00BFD4  6E81               	movwf	3969,c	;volatile
+   163                           
+   164                           ;7segFirstDisplayProg.c: 47: delay (61);
+   165  00BFD6  0E3D               	movlw	61
+   166  00BFD8  EC9A  F05F         	call	_delay
+   167                           
+   168                           ;7segFirstDisplayProg.c: 48: PORTB = 0b00000011;
+   169  00BFDC  0E03               	movlw	3
+   170  00BFDE  6E81               	movwf	3969,c	;volatile
+   171                           
+   172                           ;7segFirstDisplayProg.c: 49: delay (61);
+   173  00BFE0  0E3D               	movlw	61
+   174  00BFE2  EC9A  F05F         	call	_delay
+   175                           
+   176                           ;7segFirstDisplayProg.c: 50: PORTB = 0b01111000;
+   177  00BFE6  0E78               	movlw	120
+   178  00BFE8  6E81               	movwf	3969,c	;volatile
+   179                           
+   180                           ;7segFirstDisplayProg.c: 51: delay (61);
+   181  00BFEA  0E3D               	movlw	61
+   182  00BFEC  EC9A  F05F         	call	_delay
+   183                           
+   184                           ;7segFirstDisplayProg.c: 52: PORTB = 0b00000000;
+   185  00BFF0  0E00               	movlw	0
+   186  00BFF2  6E81               	movwf	3969,c	;volatile
+   187                           
+   188                           ;7segFirstDisplayProg.c: 53: delay (61);
+   189  00BFF4  0E3D               	movlw	61
+   190  00BFF6  EC9A  F05F         	call	_delay
+   191                           
+   192                           ;7segFirstDisplayProg.c: 54: PORTB = 0b00011000;
+   193  00BFFA  0E18               	movlw	24
+   194  00BFFC  6E81               	movwf	3969,c	;volatile
+   195  00BFFE  D7CE               	goto	l55
+   196  00C000                     __end_of_main:
+   197                           	opt stack 0
+   198                           
+   199 ;; *************** function _initialise *****************
+   200 ;; Defined at:
+   201 ;;		line 1 in file "C:\Program Files (x86)\Microchip\xc8\v1.35\include\PICSetup.h"
+   202 ;; Parameters:    Size  Location     Type
+   203 ;;		None
+   204 ;; Auto vars:     Size  Location     Type
+   205 ;;		None
+   206 ;; Return value:  Size  Location     Type
+   207 ;;		None               void
+   208 ;; Registers used:
+   209 ;;		wreg, status,2
+   210 ;; Tracked objects:
+   211 ;;		On entry : 0/0
+   212 ;;		On exit  : 0/0
+   213 ;;		Unchanged: 0/0
+   214 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   215 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   216 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   217 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   218 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   219 ;;Total ram usage:        0 bytes
+   220 ;; Hardware stack levels used:    1
+   221 ;; This function calls:
+   222 ;;		Nothing
+   223 ;; This function is called by:
+   224 ;;		_main
+   225 ;; This function uses a non-reentrant model
+   226 ;;
+   227                           
+   228                           	psect	text1
+   229  00BF5A                     __ptext1:
+   230                           	opt stack 0
+   231  00BF5A                     _initialise:
+   232                           	opt stack 30
+   233                           
+   234                           ;PICSetup.h: 3: PORTA = 0;
+   235                           
+   236                           ;incstack = 0
+   237  00BF5A  0E00               	movlw	0
+   238  00BF5C  6E80               	movwf	3968,c	;volatile
+   239                           
+   240                           ;PICSetup.h: 4: PORTB = 0;
+   241  00BF5E  0E00               	movlw	0
+   242  00BF60  6E81               	movwf	3969,c	;volatile
+   243                           
+   244                           ;PICSetup.h: 5: PORTC = 0;
+   245  00BF62  0E00               	movlw	0
+   246  00BF64  6E82               	movwf	3970,c	;volatile
+   247                           
+   248                           ;PICSetup.h: 6: PORTD = 0;
+   249  00BF66  0E00               	movlw	0
+   250  00BF68  6E83               	movwf	3971,c	;volatile
+   251                           
+   252                           ;PICSetup.h: 7: PORTE = 0;
+   253  00BF6A  0E00               	movlw	0
+   254  00BF6C  6E84               	movwf	3972,c	;volatile
+   255                           
+   256                           ;PICSetup.h: 8: TRISA = 0XFF;
+   257  00BF6E  6892               	setf	3986,c	;volatile
+   258                           
+   259                           ;PICSetup.h: 9: TRISB = 0;
+   260  00BF70  0E00               	movlw	0
+   261  00BF72  6E93               	movwf	3987,c	;volatile
+   262                           
+   263                           ;PICSetup.h: 10: TRISC = 0;
+   264  00BF74  0E00               	movlw	0
+   265  00BF76  6E94               	movwf	3988,c	;volatile
+   266                           
+   267                           ;PICSetup.h: 11: TRISD = 0b11111111;
+   268  00BF78  6895               	setf	3989,c	;volatile
+   269                           
+   270                           ;PICSetup.h: 12: TRISE = 0;
+   271  00BF7A  0E00               	movlw	0
+   272  00BF7C  6E96               	movwf	3990,c	;volatile
+   273                           
+   274                           ;PICSetup.h: 13: ADCON0 = 0;
+   275  00BF7E  0E00               	movlw	0
+   276  00BF80  6EC2               	movwf	4034,c	;volatile
+   277                           
+   278                           ;PICSetup.h: 14: ADCON1 = 0b00001111;
+   279  00BF82  0E0F               	movlw	15
+   280  00BF84  6EC1               	movwf	4033,c	;volatile
+   281                           
+   282                           ;PICSetup.h: 15: OSCTUNE = 0;
+   283  00BF86  0E00               	movlw	0
+   284  00BF88  6E9B               	movwf	3995,c	;volatile
+   285                           
+   286                           ;PICSetup.h: 16: OSCCON = 0b01110100;
+   287  00BF8A  0E74               	movlw	116
+   288  00BF8C  6ED3               	movwf	4051,c	;volatile
+   289                           
+   290                           ;PICSetup.h: 17: T0CON = 0b11000111;
+   291  00BF8E  0EC7               	movlw	199
+   292  00BF90  6ED5               	movwf	4053,c	;volatile
+   293  00BF92  0012               	return		;funcret
+   294  00BF94                     __end_of_initialise:
+   295                           	opt stack 0
+   296                           
+   297 ;; *************** function _delay *****************
+   298 ;; Defined at:
+   299 ;;		line 21 in file "7segFirstDisplayProg.c"
+   300 ;; Parameters:    Size  Location     Type
+   301 ;;  t               1    wreg     unsigned char 
+   302 ;; Auto vars:     Size  Location     Type
+   303 ;;  t               1    0[COMRAM] unsigned char 
+   304 ;; Return value:  Size  Location     Type
+   305 ;;		None               void
+   306 ;; Registers used:
+   307 ;;		wreg, status,2, status,0
+   308 ;; Tracked objects:
+   309 ;;		On entry : 0/0
+   310 ;;		On exit  : 0/0
+   311 ;;		Unchanged: 0/0
+   312 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   313 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   314 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   315 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   316 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   317 ;;Total ram usage:        1 bytes
+   318 ;; Hardware stack levels used:    1
+   319 ;; This function calls:
+   320 ;;		Nothing
+   321 ;; This function is called by:
+   322 ;;		_main
+   323 ;; This function uses a non-reentrant model
+   324 ;;
+   325                           
+   326                           	psect	text2
+   327  00BF34                     __ptext2:
+   328                           	opt stack 0
+   329  00BF34                     _delay:
+   330                           	opt stack 30
+   331                           
+   332                           ;incstack = 0
+   333                           ;delay@t stored from wreg
+   334  00BF34  6E02               	movwf	delay@t,c
+   335                           
+   336                           ;7segFirstDisplayProg.c: 23: for (n = 0; n < t; n++)
+   337  00BF36  0E00               	movlw	0
+   338  00BF38  6E01               	movwf	_n,c
+   339  00BF3A  D00A               	goto	l671
+   340  00BF3C                     l665:
+   341                           
+   342                           ;7segFirstDisplayProg.c: 24: {
+   343                           ;7segFirstDisplayProg.c: 25: TMR0 = 0;
+   344  00BF3C  0E00               	movlw	0
+   345  00BF3E  6ED7               	movwf	4055,c	;volatile
+   346  00BF40  0E00               	movlw	0
+   347  00BF42  6ED6               	movwf	4054,c	;volatile
+   348  00BF44                     l667:
+   349  00BF44  50D7               	movf	4055,w,c	;volatile
+   350  00BF46  E103               	bnz	l669
+   351  00BF48  28D6               	incf	4054,w,c	;volatile
+   352  00BF4A  A0D8               	btfss	status,0,c
+   353  00BF4C  D7FB               	goto	l667
+   354  00BF4E                     l669:
+   355  00BF4E  2A01               	incf	_n,f,c
+   356  00BF50                     l671:
+   357  00BF50  5002               	movf	delay@t,w,c
+   358  00BF52  5C01               	subwf	_n,w,c
+   359  00BF54  B0D8               	btfsc	status,0,c
+   360  00BF56  0012               	return	
+   361  00BF58  D7F1               	goto	l665
+   362  00BF5A                     __end_of_delay:
+   363                           	opt stack 0
+   364  0000                     status	equ	0xFD8
+   365                           status	equ	0xFD8
+   366                           
+   367                           	psect	rparam
+   368  0000                     status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127      1       2
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15          128      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_delay
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      15
+                              _delay
+                         _initialise
+ ---------------------------------------------------------------------------------
+ (1) _initialise                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _delay                                                1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _delay
+   _initialise
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F7F      0       0      37        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK15           80      0       0      35        0.0%
+BANK15              80      0       0      36        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F      1       2       1        1.6%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0       2      34        0.0%
+DATA                 0      0       2       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.35 build -356382666 
+Symbol Table                                                                                   Mon Mar 08 23:07:00 2021
+
+                      _n 0001                       l52 BF98                       l55 BF9C  
+            __CFG_BORV$3 000000             __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000  
+           __CFG_CP2$OFF 000000                      l671 BF50                      l665 BF3C  
+                    l667 BF44                      l669 BF4E             __CFG_CPB$OFF 000000  
+           __CFG_CPD$OFF 000000             __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000  
+                   _TMR0 000FD6                     _main BF94                     start 0000  
+          __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000             ___param_bank 000010  
+                  ?_main 0002                    _T0CON 000FD5                    _PORTA 000F80  
+                  _PORTB 000F81                    _PORTC 000F82                    _PORTD 000F83  
+                  _PORTE 000F84                    _TRISA 000F92                    _TRISB 000F93  
+                  _TRISC 000F94                    _TRISD 000F95                    _TRISE 000F96  
+          __CFG_PWRT$OFF 000000            __CFG_WRT0$OFF 000000            __CFG_WRT1$OFF 000000  
+          __CFG_WRT2$OFF 000000           __CFG_EBTR0$OFF 000000           __CFG_FCMEN$OFF 000000  
+         __CFG_EBTR1$OFF 000000           __CFG_EBTR2$OFF 000000            __CFG_WRTB$OFF 000000  
+          __CFG_WRTC$OFF 000000            __CFG_WRTD$OFF 000000           __CFG_EBTRB$OFF 000000  
+                  _delay BF34                    status 000FD8           __CFG_PBADEN$ON 000000  
+        __initialization BF2C             __end_of_main C000                   ??_main 0003  
+          __activetblptr 000000                   ?_delay 0002                   _ADCON0 000FC2  
+                 _ADCON1 000FC1                   _OSCCON 000FD3           __CFG_XINST$OFF 000000  
+         __CFG_STVREN$ON 000000                   delay@t 0002               __accesstop 0080  
+__end_of__initialization BF2E            ___rparam_used 000001           __pcstackCOMRAM 0002  
+          __end_of_delay BF5A                  ??_delay 0002                  _OSCTUNE 000F9B  
+                __Hparam 0000                  __Lparam 0000                  __pcinit BF2C  
+                __ramtop 1000               _initialise BF5A                  __ptext0 BF94  
+                __ptext1 BF5A                  __ptext2 BF34     end_of_initialization BF2E  
+              _PORTAbits 000F80              ?_initialise 0002      start_initialization BF2C  
+       __CFG_OSC$INTIO67 000000         __CFG_LPT1OSC$OFF 000000              __pbssCOMRAM 0001  
+    __size_of_initialise 003A        __CFG_CCP2MX$PORTC 000000           __size_of_delay 0026  
+       __CFG_WDTPS$32768 000000                 __Hrparam 0000                 __Lrparam 0000  
+     __CFG_BOREN$SBORDIS 000000             ??_initialise 0002            __size_of_main 006C  
+     __end_of_initialise BF94  

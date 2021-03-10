@@ -1,0 +1,2181 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Mon Mar 09 11:23:56 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4525
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+     7                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     8                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     9                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    10                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    11                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    21                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    22                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    23  0000                     
+    24                           ; Version 2.10
+    25                           ; Generated 31/07/2019 GMT
+    26                           ; 
+    27                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    28                           ; All rights reserved.
+    29                           ; 
+    30                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    31                           ; 
+    32                           ; Redistribution and use in source and binary forms, with or without modification, are
+    33                           ; permitted provided that the following conditions are met:
+    34                           ; 
+    35                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    36                           ;        conditions and the following disclaimer.
+    37                           ; 
+    38                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    39                           ;        of conditions and the following disclaimer in the documentation and/or other
+    40                           ;        materials provided with the distribution.
+    41                           ; 
+    42                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    43                           ;        software without specific prior written permission.
+    44                           ; 
+    45                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    46                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    47                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    48                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    49                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    50                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    51                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    52                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    53                           ; 
+    54                           ; 
+    55                           ; Code-generator required, PIC18F4525 Definitions
+    56                           ; 
+    57                           ; SFR Addresses
+    58  0000                     
+    59                           	psect	idataCOMRAM
+    60  0018D4                     __pidataCOMRAM:
+    61                           	opt callstack 0
+    62                           
+    63                           ;initializer for _lcdInitialise
+    64  0018D4  33                 	db	51
+    65  0018D5  33                 	db	51
+    66  0018D6  32                 	db	50
+    67  0018D7  2C                 	db	44
+    68  0018D8  06                 	db	6
+    69  0018D9  0C                 	db	12
+    70  0018DA  01                 	db	1
+    71  0018DB  02                 	db	2
+    72                           
+    73                           ;initializer for _hourtens
+    74  0018DC  30                 	db	48
+    75                           
+    76                           ;initializer for _hourunits
+    77  0018DD  30                 	db	48
+    78                           
+    79                           ;initializer for _mintens
+    80  0018DE  30                 	db	48
+    81                           
+    82                           ;initializer for _minunits
+    83  0018DF  30                 	db	48
+    84                           
+    85                           ;initializer for _sectens
+    86  0018E0  30                 	db	48
+    87                           
+    88                           ;initializer for _secunits
+    89  0018E1  30                 	db	48
+    90                           
+    91                           ;initializer for _daynumber
+    92  0018E2  01                 	db	1
+    93  0000                     _TMR0	set	4054
+    94  0000                     _PORTAbits	set	3968
+    95  0000                     _PORTBbits	set	3969
+    96  0000                     _T0CON	set	4053
+    97  0000                     _OSCCON	set	4051
+    98  0000                     _OSCTUNE	set	3995
+    99  0000                     _ADCON1	set	4033
+   100  0000                     _ADCON0	set	4034
+   101  0000                     _TRISE	set	3990
+   102  0000                     _TRISD	set	3989
+   103  0000                     _TRISC	set	3988
+   104  0000                     _TRISB	set	3987
+   105  0000                     _TRISA	set	3986
+   106  0000                     _PORTE	set	3972
+   107  0000                     _PORTD	set	3971
+   108  0000                     _PORTC	set	3970
+   109  0000                     _PORTB	set	3969
+   110  0000                     _PORTA	set	3968
+   111                           
+   112                           	psect	smallconst
+   113  001000                     __psmallconst:
+   114                           	opt callstack 0
+   115  001000  00                 	db	0
+   116  001001                     STR_5:
+   117  001001  54                 	db	84	;'T'
+   118  001002  68                 	db	104	;'h'
+   119  001003  65                 	db	101	;'e'
+   120  001004  20                 	db	32
+   121  001005  54                 	db	84	;'T'
+   122  001006  69                 	db	105	;'i'
+   123  001007  6D                 	db	109	;'m'
+   124  001008  65                 	db	101	;'e'
+   125  001009  2F                 	db	47
+   126  00100A  44                 	db	68	;'D'
+   127  00100B  61                 	db	97	;'a'
+   128  00100C  79                 	db	121	;'y'
+   129  00100D  20                 	db	32
+   130  00100E  69                 	db	105	;'i'
+   131  00100F  73                 	db	115	;'s'
+   132  001010  00                 	db	0
+   133  001011                     STR_2:
+   134  001011  53                 	db	83	;'S'
+   135  001012  65                 	db	101	;'e'
+   136  001013  74                 	db	116	;'t'
+   137  001014  20                 	db	32
+   138  001015  54                 	db	84	;'T'
+   139  001016  68                 	db	104	;'h'
+   140  001017  65                 	db	101	;'e'
+   141  001018  20                 	db	32
+   142  001019  43                 	db	67	;'C'
+   143  00101A  6C                 	db	108	;'l'
+   144  00101B  6F                 	db	111	;'o'
+   145  00101C  63                 	db	99	;'c'
+   146  00101D  6B                 	db	107	;'k'
+   147  00101E  00                 	db	0
+   148  00101F                     STR_1:
+   149  00101F  53                 	db	83	;'S'
+   150  001020  65                 	db	101	;'e'
+   151  001021  74                 	db	116	;'t'
+   152  001022  20                 	db	32
+   153  001023  54                 	db	84	;'T'
+   154  001024  68                 	db	104	;'h'
+   155  001025  65                 	db	101	;'e'
+   156  001026  20                 	db	32
+   157  001027  44                 	db	68	;'D'
+   158  001028  61                 	db	97	;'a'
+   159  001029  79                 	db	121	;'y'
+   160  00102A  00                 	db	0
+   161  00102B                     STR_4:
+   162  00102B  4D                 	db	77	;'M'
+   163  00102C  69                 	db	105	;'i'
+   164  00102D  6E                 	db	110	;'n'
+   165  00102E  75                 	db	117	;'u'
+   166  00102F  74                 	db	116	;'t'
+   167  001030  65                 	db	101	;'e'
+   168  001031  73                 	db	115	;'s'
+   169  001032  00                 	db	0
+   170  001033                     STR_3:
+   171  001033  48                 	db	72	;'H'
+   172  001034  6F                 	db	111	;'o'
+   173  001035  75                 	db	117	;'u'
+   174  001036  72                 	db	114	;'r'
+   175  001037  73                 	db	115	;'s'
+   176  001038  00                 	db	0
+   177                           
+   178                           ; #config settings
+   179  001039  00                 	db	0	; dummy byte at the end
+   180  0000                     
+   181                           	psect	cinit
+   182  00177E                     __pcinit:
+   183                           	opt callstack 0
+   184  00177E                     start_initialization:
+   185                           	opt callstack 0
+   186  00177E                     __initialization:
+   187                           	opt callstack 0
+   188                           
+   189                           ; Initialize objects allocated to COMRAM (15 bytes)
+   190                           ; load TBLPTR registers with __pidataCOMRAM
+   191  00177E  0ED4               	movlw	low __pidataCOMRAM
+   192  001780  6EF6               	movwf	tblptrl,c
+   193  001782  0E18               	movlw	high __pidataCOMRAM
+   194  001784  6EF7               	movwf	tblptrh,c
+   195  001786  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   196  001788  6EF8               	movwf	tblptru,c
+   197  00178A  EE00  F056         	lfsr	0,__pdataCOMRAM
+   198  00178E  EE10 F00F          	lfsr	1,15
+   199  001792                     copy_data0:
+   200  001792  0009               	tblrd		*+
+   201  001794  CFF5 FFEE          	movff	tablat,postinc0
+   202  001798  50E5               	movf	postdec1,w,c
+   203  00179A  50E1               	movf	fsr1l,w,c
+   204  00179C  E1FA               	bnz	copy_data0
+   205                           
+   206                           ; Clear objects allocated to COMRAM (85 bytes)
+   207  00179E  EE00  F001         	lfsr	0,__pbssCOMRAM
+   208  0017A2  0E55               	movlw	85
+   209  0017A4                     clear_0:
+   210  0017A4  6AEE               	clrf	postinc0,c
+   211  0017A6  06E8               	decf	wreg,f,c
+   212  0017A8  E1FD               	bnz	clear_0
+   213  0017AA                     end_of_initialization:
+   214                           	opt callstack 0
+   215  0017AA                     __end_of__initialization:
+   216                           	opt callstack 0
+   217  0017AA  0E00               	movlw	low (__Lsmallconst shr (0+16))
+   218  0017AC  6EF8               	movwf	tblptru,c
+   219  0017AE  0E10               	movlw	high __Lsmallconst
+   220  0017B0  6EF7               	movwf	tblptrh,c
+   221  0017B2  0100               	movlb	0
+   222  0017B4  EF1D  F008         	goto	_main	;jump to C main() function
+   223                           
+   224                           	psect	bssCOMRAM
+   225  000001                     __pbssCOMRAM:
+   226                           	opt callstack 0
+   227  000001                     _str:
+   228                           	opt callstack 0
+   229  000001                     	ds	80
+   230  000051                     _setbutcounts:
+   231                           	opt callstack 0
+   232  000051                     	ds	1
+   233  000052                     _rsLine:
+   234                           	opt callstack 0
+   235  000052                     	ds	1
+   236  000053                     _lcdTempData:
+   237                           	opt callstack 0
+   238  000053                     	ds	1
+   239  000054                     _lcdData:
+   240                           	opt callstack 0
+   241  000054                     	ds	1
+   242  000055                     _n:
+   243                           	opt callstack 0
+   244  000055                     	ds	1
+   245                           
+   246                           	psect	dataCOMRAM
+   247  000056                     __pdataCOMRAM:
+   248                           	opt callstack 0
+   249  000056                     _lcdInitialise:
+   250                           	opt callstack 0
+   251  000056                     	ds	8
+   252  00005E                     _hourtens:
+   253                           	opt callstack 0
+   254  00005E                     	ds	1
+   255  00005F                     _hourunits:
+   256                           	opt callstack 0
+   257  00005F                     	ds	1
+   258  000060                     _mintens:
+   259                           	opt callstack 0
+   260  000060                     	ds	1
+   261  000061                     _minunits:
+   262                           	opt callstack 0
+   263  000061                     	ds	1
+   264  000062                     _sectens:
+   265                           	opt callstack 0
+   266  000062                     	ds	1
+   267  000063                     _secunits:
+   268                           	opt callstack 0
+   269  000063                     	ds	1
+   270  000064                     _daynumber:
+   271                           	opt callstack 0
+   272  000064                     	ds	1
+   273                           
+   274                           	psect	cstackCOMRAM
+   275  000065                     __pcstackCOMRAM:
+   276                           	opt callstack 0
+   277  000065                     shiftcurleft@l:
+   278                           	opt callstack 0
+   279  000065                     writeString@words:
+   280                           	opt callstack 0
+   281                           
+   282                           ; 2 bytes @ 0x0
+   283  000065                     	ds	2
+   284  000067                     
+   285                           ; 1 bytes @ 0x2
+   286 ;;
+   287 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   288 ;;
+   289 ;; *************** function _main *****************
+   290 ;; Defined at:
+   291 ;;		line 138 in file "24HrDayLCDClcok.c"
+   292 ;; Parameters:    Size  Location     Type
+   293 ;;		None
+   294 ;; Auto vars:     Size  Location     Type
+   295 ;;		None
+   296 ;; Return value:  Size  Location     Type
+   297 ;;                  1    wreg      void 
+   298 ;; Registers used:
+   299 ;;		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+   300 ;; Tracked objects:
+   301 ;;		On entry : 0/0
+   302 ;;		On exit  : 0/0
+   303 ;;		Unchanged: 0/0
+   304 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   305 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   306 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   307 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   308 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   309 ;;Total ram usage:        0 bytes
+   310 ;; Hardware stack levels required when called:    3
+   311 ;; This function calls:
+   312 ;;		_clearTheScreen
+   313 ;;		_debounce
+   314 ;;		_initialise
+   315 ;;		_lcdOut
+   316 ;;		_line2
+   317 ;;		_setUpTheLCD
+   318 ;;		_shiftcurleft
+   319 ;;		_writeString
+   320 ;; This function is called by:
+   321 ;;		Startup code after reset
+   322 ;; This function uses a non-reentrant model
+   323 ;;
+   324                           
+   325                           	psect	text0
+   326  00103A                     __ptext0:
+   327                           	opt callstack 0
+   328  00103A                     _main:
+   329                           	opt callstack 28
+   330  00103A  ECDC  F00B         	call	_initialise	;wreg free
+   331  00103E  EC95  F00B         	call	_setUpTheLCD	;wreg free
+   332  001042  EC61  F00C         	call	_clearTheScreen	;wreg free
+   333  001046  0E1F               	movlw	low STR_1
+   334  001048  6E65               	movwf	writeString@words^0,c
+   335  00104A  0E10               	movlw	high STR_1
+   336  00104C  6E66               	movwf	(writeString@words+1)^0,c
+   337  00104E  ECF9  F00B         	call	_writeString	;wreg free
+   338  001052  EC58  F00C         	call	_line2	;wreg free
+   339  001056  EF12  F009         	goto	l1567
+   340  00105A                     l127:
+   341  00105A  A080               	btfss	128,0,c	;volatile
+   342  00105C  EF32  F008         	goto	u671
+   343  001060  EF34  F008         	goto	u670
+   344  001064                     u671:
+   345  001064  EF36  F008         	goto	l1453
+   346  001068                     u670:
+   347  001068  EC48  F00C         	call	_debounce	;wreg free
+   348  00106C                     l1453:
+   349  00106C  A080               	btfss	128,0,c	;volatile
+   350  00106E  EF3B  F008         	goto	u681
+   351  001072  EF3D  F008         	goto	u680
+   352  001076                     u681:
+   353  001076  EF3E  F008         	goto	l130
+   354  00107A                     u680:
+   355  00107A  2A64               	incf	_daynumber^0,f,c
+   356  00107C                     l130:
+   357  00107C  B080               	btfsc	128,0,c	;volatile
+   358  00107E  EF43  F008         	goto	u691
+   359  001082  EF45  F008         	goto	u690
+   360  001086                     u691:
+   361  001086  EF3E  F008         	goto	l130
+   362  00108A                     u690:
+   363  00108A  A280               	btfss	128,1,c	;volatile
+   364  00108C  EF4A  F008         	goto	u701
+   365  001090  EF4C  F008         	goto	u700
+   366  001094                     u701:
+   367  001094  EF4E  F008         	goto	l1459
+   368  001098                     u700:
+   369  001098  EC48  F00C         	call	_debounce	;wreg free
+   370  00109C                     l1459:
+   371  00109C  A280               	btfss	128,1,c	;volatile
+   372  00109E  EF53  F008         	goto	u711
+   373  0010A2  EF55  F008         	goto	u710
+   374  0010A6                     u711:
+   375  0010A6  EF56  F008         	goto	l135
+   376  0010AA                     u710:
+   377  0010AA  0664               	decf	_daynumber^0,f,c
+   378  0010AC                     l135:
+   379  0010AC  B280               	btfsc	128,1,c	;volatile
+   380  0010AE  EF5B  F008         	goto	u721
+   381  0010B2  EF5D  F008         	goto	u720
+   382  0010B6                     u721:
+   383  0010B6  EF56  F008         	goto	l135
+   384  0010BA                     u720:
+   385  0010BA  0464               	decf	_daynumber^0,w,c
+   386  0010BC  A4D8               	btfss	status,2,c
+   387  0010BE  EF63  F008         	goto	u731
+   388  0010C2  EF65  F008         	goto	u730
+   389  0010C6                     u731:
+   390  0010C6  EF73  F008         	goto	l1477
+   391  0010CA                     u730:
+   392  0010CA  0E4D               	movlw	77
+   393  0010CC  6E54               	movwf	_lcdData^0,c
+   394  0010CE  EC72  F00C         	call	_lcdOut	;wreg free
+   395  0010D2  0E6F               	movlw	111
+   396  0010D4  6E54               	movwf	_lcdData^0,c
+   397  0010D6  EC72  F00C         	call	_lcdOut	;wreg free
+   398  0010DA  0E6E               	movlw	110
+   399  0010DC  6E54               	movwf	_lcdData^0,c
+   400  0010DE  EC72  F00C         	call	_lcdOut	;wreg free
+   401  0010E2  EC58  F00C         	call	_line2	;wreg free
+   402  0010E6                     l1477:
+   403  0010E6  0E02               	movlw	2
+   404  0010E8  1864               	xorwf	_daynumber^0,w,c
+   405  0010EA  A4D8               	btfss	status,2,c
+   406  0010EC  EF7A  F008         	goto	u741
+   407  0010F0  EF7C  F008         	goto	u740
+   408  0010F4                     u741:
+   409  0010F4  EF8A  F008         	goto	l1491
+   410  0010F8                     u740:
+   411  0010F8  0E54               	movlw	84
+   412  0010FA  6E54               	movwf	_lcdData^0,c
+   413  0010FC  EC72  F00C         	call	_lcdOut	;wreg free
+   414  001100  0E75               	movlw	117
+   415  001102  6E54               	movwf	_lcdData^0,c
+   416  001104  EC72  F00C         	call	_lcdOut	;wreg free
+   417  001108  0E65               	movlw	101
+   418  00110A  6E54               	movwf	_lcdData^0,c
+   419  00110C  EC72  F00C         	call	_lcdOut	;wreg free
+   420  001110  EC58  F00C         	call	_line2	;wreg free
+   421  001114                     l1491:
+   422  001114  0E03               	movlw	3
+   423  001116  1864               	xorwf	_daynumber^0,w,c
+   424  001118  A4D8               	btfss	status,2,c
+   425  00111A  EF91  F008         	goto	u751
+   426  00111E  EF93  F008         	goto	u750
+   427  001122                     u751:
+   428  001122  EFA1  F008         	goto	l1505
+   429  001126                     u750:
+   430  001126  0E57               	movlw	87
+   431  001128  6E54               	movwf	_lcdData^0,c
+   432  00112A  EC72  F00C         	call	_lcdOut	;wreg free
+   433  00112E  0E65               	movlw	101
+   434  001130  6E54               	movwf	_lcdData^0,c
+   435  001132  EC72  F00C         	call	_lcdOut	;wreg free
+   436  001136  0E64               	movlw	100
+   437  001138  6E54               	movwf	_lcdData^0,c
+   438  00113A  EC72  F00C         	call	_lcdOut	;wreg free
+   439  00113E  EC58  F00C         	call	_line2	;wreg free
+   440  001142                     l1505:
+   441  001142  0E04               	movlw	4
+   442  001144  1864               	xorwf	_daynumber^0,w,c
+   443  001146  A4D8               	btfss	status,2,c
+   444  001148  EFA8  F008         	goto	u761
+   445  00114C  EFAA  F008         	goto	u760
+   446  001150                     u761:
+   447  001150  EFB8  F008         	goto	l1519
+   448  001154                     u760:
+   449  001154  0E54               	movlw	84
+   450  001156  6E54               	movwf	_lcdData^0,c
+   451  001158  EC72  F00C         	call	_lcdOut	;wreg free
+   452  00115C  0E68               	movlw	104
+   453  00115E  6E54               	movwf	_lcdData^0,c
+   454  001160  EC72  F00C         	call	_lcdOut	;wreg free
+   455  001164  0E72               	movlw	114
+   456  001166  6E54               	movwf	_lcdData^0,c
+   457  001168  EC72  F00C         	call	_lcdOut	;wreg free
+   458  00116C  EC58  F00C         	call	_line2	;wreg free
+   459  001170                     l1519:
+   460  001170  0E05               	movlw	5
+   461  001172  1864               	xorwf	_daynumber^0,w,c
+   462  001174  A4D8               	btfss	status,2,c
+   463  001176  EFBF  F008         	goto	u771
+   464  00117A  EFC1  F008         	goto	u770
+   465  00117E                     u771:
+   466  00117E  EFCF  F008         	goto	l1533
+   467  001182                     u770:
+   468  001182  0E46               	movlw	70
+   469  001184  6E54               	movwf	_lcdData^0,c
+   470  001186  EC72  F00C         	call	_lcdOut	;wreg free
+   471  00118A  0E72               	movlw	114
+   472  00118C  6E54               	movwf	_lcdData^0,c
+   473  00118E  EC72  F00C         	call	_lcdOut	;wreg free
+   474  001192  0E69               	movlw	105
+   475  001194  6E54               	movwf	_lcdData^0,c
+   476  001196  EC72  F00C         	call	_lcdOut	;wreg free
+   477  00119A  EC58  F00C         	call	_line2	;wreg free
+   478  00119E                     l1533:
+   479  00119E  0E06               	movlw	6
+   480  0011A0  1864               	xorwf	_daynumber^0,w,c
+   481  0011A2  A4D8               	btfss	status,2,c
+   482  0011A4  EFD6  F008         	goto	u781
+   483  0011A8  EFD8  F008         	goto	u780
+   484  0011AC                     u781:
+   485  0011AC  EFE6  F008         	goto	l1547
+   486  0011B0                     u780:
+   487  0011B0  0E53               	movlw	83
+   488  0011B2  6E54               	movwf	_lcdData^0,c
+   489  0011B4  EC72  F00C         	call	_lcdOut	;wreg free
+   490  0011B8  0E61               	movlw	97
+   491  0011BA  6E54               	movwf	_lcdData^0,c
+   492  0011BC  EC72  F00C         	call	_lcdOut	;wreg free
+   493  0011C0  0E74               	movlw	116
+   494  0011C2  6E54               	movwf	_lcdData^0,c
+   495  0011C4  EC72  F00C         	call	_lcdOut	;wreg free
+   496  0011C8  EC58  F00C         	call	_line2	;wreg free
+   497  0011CC                     l1547:
+   498  0011CC  0E07               	movlw	7
+   499  0011CE  1864               	xorwf	_daynumber^0,w,c
+   500  0011D0  A4D8               	btfss	status,2,c
+   501  0011D2  EFED  F008         	goto	u791
+   502  0011D6  EFEF  F008         	goto	u790
+   503  0011DA                     u791:
+   504  0011DA  EFFD  F008         	goto	l1561
+   505  0011DE                     u790:
+   506  0011DE  0E53               	movlw	83
+   507  0011E0  6E54               	movwf	_lcdData^0,c
+   508  0011E2  EC72  F00C         	call	_lcdOut	;wreg free
+   509  0011E6  0E75               	movlw	117
+   510  0011E8  6E54               	movwf	_lcdData^0,c
+   511  0011EA  EC72  F00C         	call	_lcdOut	;wreg free
+   512  0011EE  0E6E               	movlw	110
+   513  0011F0  6E54               	movwf	_lcdData^0,c
+   514  0011F2  EC72  F00C         	call	_lcdOut	;wreg free
+   515  0011F6  EC58  F00C         	call	_line2	;wreg free
+   516  0011FA                     l1561:
+   517  0011FA  0E08               	movlw	8
+   518  0011FC  1864               	xorwf	_daynumber^0,w,c
+   519  0011FE  A4D8               	btfss	status,2,c
+   520  001200  EF04  F009         	goto	u801
+   521  001204  EF06  F009         	goto	u800
+   522  001208                     u801:
+   523  001208  EF08  F009         	goto	l145
+   524  00120C                     u800:
+   525  00120C  0E01               	movlw	1
+   526  00120E  6E64               	movwf	_daynumber^0,c
+   527  001210                     l145:
+   528  001210  5064               	movf	_daynumber^0,w,c
+   529  001212  A4D8               	btfss	status,2,c
+   530  001214  EF0E  F009         	goto	u811
+   531  001218  EF10  F009         	goto	u810
+   532  00121C                     u811:
+   533  00121C  EF12  F009         	goto	l1567
+   534  001220                     u810:
+   535  001220  0E01               	movlw	1
+   536  001222  6E64               	movwf	_daynumber^0,c
+   537  001224                     l1567:
+   538  001224  A480               	btfss	128,2,c	;volatile
+   539  001226  EF17  F009         	goto	u821
+   540  00122A  EF19  F009         	goto	u820
+   541  00122E                     u821:
+   542  00122E  EF2D  F008         	goto	l127
+   543  001232                     u820:
+   544  001232  EC48  F00C         	call	_debounce	;wreg free
+   545  001236                     l148:
+   546  001236  B480               	btfsc	128,2,c	;volatile
+   547  001238  EF20  F009         	goto	u831
+   548  00123C  EF22  F009         	goto	u830
+   549  001240                     u831:
+   550  001240  EF1B  F009         	goto	l148
+   551  001244                     u830:
+   552  001244  EC61  F00C         	call	_clearTheScreen	;wreg free
+   553  001248  0E11               	movlw	low STR_2
+   554  00124A  6E65               	movwf	writeString@words^0,c
+   555  00124C  0E10               	movlw	high STR_2
+   556  00124E  6E66               	movwf	(writeString@words+1)^0,c
+   557  001250  ECF9  F00B         	call	_writeString	;wreg free
+   558  001254  EFB5  F009         	goto	l151
+   559  001258                     l1575:
+   560  001258  EC58  F00C         	call	_line2	;wreg free
+   561  00125C  0E33               	movlw	low STR_3
+   562  00125E  6E65               	movwf	writeString@words^0,c
+   563  001260  0E10               	movlw	high STR_3
+   564  001262  6E66               	movwf	(writeString@words+1)^0,c
+   565  001264  ECF9  F00B         	call	_writeString	;wreg free
+   566  001268  0E3A               	movlw	58
+   567  00126A  6E54               	movwf	_lcdData^0,c
+   568  00126C  EC72  F00C         	call	_lcdOut	;wreg free
+   569  001270  C05E  F054         	movff	_hourtens,_lcdData
+   570  001274  EC72  F00C         	call	_lcdOut	;wreg free
+   571  001278  C05F  F054         	movff	_hourunits,_lcdData
+   572  00127C  EC72  F00C         	call	_lcdOut	;wreg free
+   573  001280  0E01               	movlw	1
+   574  001282  EC30  F00C         	call	_shiftcurleft
+   575  001286  A080               	btfss	128,0,c	;volatile
+   576  001288  EF48  F009         	goto	u841
+   577  00128C  EF4A  F009         	goto	u840
+   578  001290                     u841:
+   579  001290  EF4C  F009         	goto	l1597
+   580  001294                     u840:
+   581  001294  EC48  F00C         	call	_debounce	;wreg free
+   582  001298                     l1597:
+   583  001298  A080               	btfss	128,0,c	;volatile
+   584  00129A  EF51  F009         	goto	u851
+   585  00129E  EF53  F009         	goto	u850
+   586  0012A2                     u851:
+   587  0012A2  EF54  F009         	goto	l155
+   588  0012A6                     u850:
+   589  0012A6  2A5F               	incf	_hourunits^0,f,c
+   590  0012A8                     l155:
+   591  0012A8  B080               	btfsc	128,0,c	;volatile
+   592  0012AA  EF59  F009         	goto	u861
+   593  0012AE  EF5B  F009         	goto	u860
+   594  0012B2                     u861:
+   595  0012B2  EF54  F009         	goto	l155
+   596  0012B6                     u860:
+   597  0012B6  0E3A               	movlw	58
+   598  0012B8  185F               	xorwf	_hourunits^0,w,c
+   599  0012BA  A4D8               	btfss	status,2,c
+   600  0012BC  EF62  F009         	goto	u871
+   601  0012C0  EF64  F009         	goto	u870
+   602  0012C4                     u871:
+   603  0012C4  EF67  F009         	goto	l1607
+   604  0012C8                     u870:
+   605  0012C8  0E30               	movlw	48
+   606  0012CA  6E5F               	movwf	_hourunits^0,c
+   607  0012CC  2A5E               	incf	_hourtens^0,f,c
+   608  0012CE                     l1607:
+   609  0012CE  0E32               	movlw	50
+   610  0012D0  185E               	xorwf	_hourtens^0,w,c
+   611  0012D2  A4D8               	btfss	status,2,c
+   612  0012D4  EF6E  F009         	goto	u881
+   613  0012D8  EF70  F009         	goto	u880
+   614  0012DC                     u881:
+   615  0012DC  EF7D  F009         	goto	l1613
+   616  0012E0                     u880:
+   617  0012E0  0E34               	movlw	52
+   618  0012E2  185F               	xorwf	_hourunits^0,w,c
+   619  0012E4  A4D8               	btfss	status,2,c
+   620  0012E6  EF77  F009         	goto	u891
+   621  0012EA  EF79  F009         	goto	u890
+   622  0012EE                     u891:
+   623  0012EE  EF7D  F009         	goto	l1613
+   624  0012F2                     u890:
+   625  0012F2  0E30               	movlw	48
+   626  0012F4  6E5E               	movwf	_hourtens^0,c
+   627  0012F6  0E30               	movlw	48
+   628  0012F8  6E5F               	movwf	_hourunits^0,c
+   629  0012FA                     l1613:
+   630  0012FA  A280               	btfss	128,1,c	;volatile
+   631  0012FC  EF82  F009         	goto	u901
+   632  001300  EF84  F009         	goto	u900
+   633  001304                     u901:
+   634  001304  EF86  F009         	goto	l1617
+   635  001308                     u900:
+   636  001308  EC48  F00C         	call	_debounce	;wreg free
+   637  00130C                     l1617:
+   638  00130C  A280               	btfss	128,1,c	;volatile
+   639  00130E  EF8B  F009         	goto	u911
+   640  001312  EF8D  F009         	goto	u910
+   641  001316                     u911:
+   642  001316  EF9C  F009         	goto	l164
+   643  00131A                     u910:
+   644  00131A  0E30               	movlw	48
+   645  00131C  185F               	xorwf	_hourunits^0,w,c
+   646  00131E  A4D8               	btfss	status,2,c
+   647  001320  EF94  F009         	goto	u921
+   648  001324  EF96  F009         	goto	u920
+   649  001328                     u921:
+   650  001328  EF9B  F009         	goto	l1625
+   651  00132C                     u920:
+   652  00132C  0E39               	movlw	57
+   653  00132E  6E5F               	movwf	_hourunits^0,c
+   654  001330  065E               	decf	_hourtens^0,f,c
+   655  001332  EF9C  F009         	goto	l164
+   656  001336                     l1625:
+   657  001336  065F               	decf	_hourunits^0,f,c
+   658  001338                     l164:
+   659  001338  B280               	btfsc	128,1,c	;volatile
+   660  00133A  EFA1  F009         	goto	u931
+   661  00133E  EFA3  F009         	goto	u930
+   662  001342                     u931:
+   663  001342  EF9C  F009         	goto	l164
+   664  001346                     u930:
+   665  001346  A480               	btfss	128,2,c	;volatile
+   666  001348  EFA8  F009         	goto	u941
+   667  00134C  EFAA  F009         	goto	u940
+   668  001350                     u941:
+   669  001350  EFAC  F009         	goto	l1629
+   670  001354                     u940:
+   671  001354  EC48  F00C         	call	_debounce	;wreg free
+   672  001358                     l1629:
+   673  001358  A480               	btfss	128,2,c	;volatile
+   674  00135A  EFB1  F009         	goto	u951
+   675  00135E  EFB3  F009         	goto	u950
+   676  001362                     u951:
+   677  001362  EFB5  F009         	goto	l151
+   678  001366                     u950:
+   679  001366  EFBC  F009         	goto	l1633
+   680  00136A                     l151:
+   681  00136A  A480               	btfss	128,2,c	;volatile
+   682  00136C  EFBA  F009         	goto	u961
+   683  001370  EFBC  F009         	goto	u960
+   684  001374                     u961:
+   685  001374  EF2C  F009         	goto	l1575
+   686  001378                     u960:
+   687  001378                     l1633:
+   688  001378  EC58  F00C         	call	_line2	;wreg free
+   689  00137C  0E2B               	movlw	low STR_4
+   690  00137E  6E65               	movwf	writeString@words^0,c
+   691  001380  0E10               	movlw	high STR_4
+   692  001382  6E66               	movwf	(writeString@words+1)^0,c
+   693  001384  ECF9  F00B         	call	_writeString	;wreg free
+   694  001388  0E3A               	movlw	58
+   695  00138A  6E54               	movwf	_lcdData^0,c
+   696  00138C  EC72  F00C         	call	_lcdOut	;wreg free
+   697  001390  0E00               	movlw	0
+   698  001392  6E55               	movwf	_n^0,c
+   699  001394                     l1643:
+   700  001394  0E0E               	movlw	14
+   701  001396  6455               	cpfsgt	_n^0,c
+   702  001398  EFD0  F009         	goto	u971
+   703  00139C  EFD2  F009         	goto	u970
+   704  0013A0                     u971:
+   705  0013A0  EFD4  F009         	goto	l1647
+   706  0013A4                     u970:
+   707  0013A4  EFE5  F009         	goto	l176
+   708  0013A8                     l1647:
+   709  0013A8  0E00               	movlw	0
+   710  0013AA  6ED7               	movwf	215,c	;volatile
+   711  0013AC  0E00               	movlw	0
+   712  0013AE  6ED6               	movwf	214,c	;volatile
+   713  0013B0                     l1649:
+   714  0013B0  50D7               	movf	215,w,c	;volatile
+   715  0013B2  E108               	bnz	u980
+   716  0013B4  28D6               	incf	214,w,c	;volatile
+   717  0013B6  A0D8               	btfss	status,0,c
+   718  0013B8  EFE0  F009         	goto	u981
+   719  0013BC  EFE2  F009         	goto	u980
+   720  0013C0                     u981:
+   721  0013C0  EFD8  F009         	goto	l1649
+   722  0013C4                     u980:
+   723  0013C4  2A55               	incf	_n^0,f,c
+   724  0013C6  EFCA  F009         	goto	l1643
+   725  0013CA                     l176:
+   726  0013CA  C060  F054         	movff	_mintens,_lcdData
+   727  0013CE  EC72  F00C         	call	_lcdOut	;wreg free
+   728  0013D2  C061  F054         	movff	_minunits,_lcdData
+   729  0013D6  EC72  F00C         	call	_lcdOut	;wreg free
+   730  0013DA  0E02               	movlw	2
+   731  0013DC  EC30  F00C         	call	_shiftcurleft
+   732  0013E0  A080               	btfss	128,0,c	;volatile
+   733  0013E2  EFF5  F009         	goto	u991
+   734  0013E6  EFF7  F009         	goto	u990
+   735  0013EA                     u991:
+   736  0013EA  EFF9  F009         	goto	l1663
+   737  0013EE                     u990:
+   738  0013EE  EC48  F00C         	call	_debounce	;wreg free
+   739  0013F2                     l1663:
+   740  0013F2  A080               	btfss	128,0,c	;volatile
+   741  0013F4  EFFE  F009         	goto	u1001
+   742  0013F8  EF00  F00A         	goto	u1000
+   743  0013FC                     u1001:
+   744  0013FC  EF01  F00A         	goto	l179
+   745  001400                     u1000:
+   746  001400  2A61               	incf	_minunits^0,f,c
+   747  001402                     l179:
+   748  001402  B080               	btfsc	128,0,c	;volatile
+   749  001404  EF06  F00A         	goto	u1011
+   750  001408  EF08  F00A         	goto	u1010
+   751  00140C                     u1011:
+   752  00140C  EF01  F00A         	goto	l179
+   753  001410                     u1010:
+   754  001410  0E3A               	movlw	58
+   755  001412  1861               	xorwf	_minunits^0,w,c
+   756  001414  A4D8               	btfss	status,2,c
+   757  001416  EF0F  F00A         	goto	u1021
+   758  00141A  EF11  F00A         	goto	u1020
+   759  00141E                     u1021:
+   760  00141E  EF14  F00A         	goto	l1673
+   761  001422                     u1020:
+   762  001422  0E30               	movlw	48
+   763  001424  6E61               	movwf	_minunits^0,c
+   764  001426  2A60               	incf	_mintens^0,f,c
+   765  001428                     l1673:
+   766  001428  A280               	btfss	128,1,c	;volatile
+   767  00142A  EF19  F00A         	goto	u1031
+   768  00142E  EF1B  F00A         	goto	u1030
+   769  001432                     u1031:
+   770  001432  EF1D  F00A         	goto	l1677
+   771  001436                     u1030:
+   772  001436  EC48  F00C         	call	_debounce	;wreg free
+   773  00143A                     l1677:
+   774  00143A  A280               	btfss	128,1,c	;volatile
+   775  00143C  EF22  F00A         	goto	u1041
+   776  001440  EF24  F00A         	goto	u1040
+   777  001444                     u1041:
+   778  001444  EF33  F00A         	goto	l187
+   779  001448                     u1040:
+   780  001448  0E30               	movlw	48
+   781  00144A  1861               	xorwf	_minunits^0,w,c
+   782  00144C  A4D8               	btfss	status,2,c
+   783  00144E  EF2B  F00A         	goto	u1051
+   784  001452  EF2D  F00A         	goto	u1050
+   785  001456                     u1051:
+   786  001456  EF32  F00A         	goto	l1685
+   787  00145A                     u1050:
+   788  00145A  0E39               	movlw	57
+   789  00145C  6E61               	movwf	_minunits^0,c
+   790  00145E  0660               	decf	_mintens^0,f,c
+   791  001460  EF33  F00A         	goto	l187
+   792  001464                     l1685:
+   793  001464  0661               	decf	_minunits^0,f,c
+   794  001466                     l187:
+   795  001466  B280               	btfsc	128,1,c	;volatile
+   796  001468  EF38  F00A         	goto	u1061
+   797  00146C  EF3A  F00A         	goto	u1060
+   798  001470                     u1061:
+   799  001470  EF33  F00A         	goto	l187
+   800  001474                     u1060:
+   801  001474  B480               	btfsc	128,2,c	;volatile
+   802  001476  EF3F  F00A         	goto	u1071
+   803  00147A  EF41  F00A         	goto	u1070
+   804  00147E                     u1071:
+   805  00147E  EF43  F00A         	goto	l1689
+   806  001482                     u1070:
+   807  001482  EFE5  F009         	goto	l176
+   808  001486                     l1689:
+   809  001486  EC61  F00C         	call	_clearTheScreen	;wreg free
+   810  00148A  0E01               	movlw	low STR_5
+   811  00148C  6E65               	movwf	writeString@words^0,c
+   812  00148E  0E10               	movlw	high STR_5
+   813  001490  6E66               	movwf	(writeString@words+1)^0,c
+   814  001492  ECF9  F00B         	call	_writeString	;wreg free
+   815  001496  0EA0               	movlw	160
+   816  001498  6E54               	movwf	_lcdData^0,c
+   817  00149A                     l1695:
+   818  00149A  EC72  F00C         	call	_lcdOut	;wreg free
+   819  00149E  0464               	decf	_daynumber^0,w,c
+   820  0014A0  A4D8               	btfss	status,2,c
+   821  0014A2  EF55  F00A         	goto	u1081
+   822  0014A6  EF57  F00A         	goto	u1080
+   823  0014AA                     u1081:
+   824  0014AA  EF65  F00A         	goto	l1711
+   825  0014AE                     u1080:
+   826  0014AE  0E4D               	movlw	77
+   827  0014B0  6E54               	movwf	_lcdData^0,c
+   828  0014B2  EC72  F00C         	call	_lcdOut	;wreg free
+   829  0014B6  0E6F               	movlw	111
+   830  0014B8  6E54               	movwf	_lcdData^0,c
+   831  0014BA  EC72  F00C         	call	_lcdOut	;wreg free
+   832  0014BE  0E6E               	movlw	110
+   833  0014C0  6E54               	movwf	_lcdData^0,c
+   834  0014C2  EC72  F00C         	call	_lcdOut	;wreg free
+   835  0014C6  EC58  F00C         	call	_line2	;wreg free
+   836  0014CA                     l1711:
+   837  0014CA  0E02               	movlw	2
+   838  0014CC  1864               	xorwf	_daynumber^0,w,c
+   839  0014CE  A4D8               	btfss	status,2,c
+   840  0014D0  EF6C  F00A         	goto	u1091
+   841  0014D4  EF6E  F00A         	goto	u1090
+   842  0014D8                     u1091:
+   843  0014D8  EF7C  F00A         	goto	l1725
+   844  0014DC                     u1090:
+   845  0014DC  0E54               	movlw	84
+   846  0014DE  6E54               	movwf	_lcdData^0,c
+   847  0014E0  EC72  F00C         	call	_lcdOut	;wreg free
+   848  0014E4  0E75               	movlw	117
+   849  0014E6  6E54               	movwf	_lcdData^0,c
+   850  0014E8  EC72  F00C         	call	_lcdOut	;wreg free
+   851  0014EC  0E65               	movlw	101
+   852  0014EE  6E54               	movwf	_lcdData^0,c
+   853  0014F0  EC72  F00C         	call	_lcdOut	;wreg free
+   854  0014F4  EC58  F00C         	call	_line2	;wreg free
+   855  0014F8                     l1725:
+   856  0014F8  0E03               	movlw	3
+   857  0014FA  1864               	xorwf	_daynumber^0,w,c
+   858  0014FC  A4D8               	btfss	status,2,c
+   859  0014FE  EF83  F00A         	goto	u1101
+   860  001502  EF85  F00A         	goto	u1100
+   861  001506                     u1101:
+   862  001506  EF93  F00A         	goto	l1739
+   863  00150A                     u1100:
+   864  00150A  0E57               	movlw	87
+   865  00150C  6E54               	movwf	_lcdData^0,c
+   866  00150E  EC72  F00C         	call	_lcdOut	;wreg free
+   867  001512  0E65               	movlw	101
+   868  001514  6E54               	movwf	_lcdData^0,c
+   869  001516  EC72  F00C         	call	_lcdOut	;wreg free
+   870  00151A  0E64               	movlw	100
+   871  00151C  6E54               	movwf	_lcdData^0,c
+   872  00151E  EC72  F00C         	call	_lcdOut	;wreg free
+   873  001522  EC58  F00C         	call	_line2	;wreg free
+   874  001526                     l1739:
+   875  001526  0E04               	movlw	4
+   876  001528  1864               	xorwf	_daynumber^0,w,c
+   877  00152A  A4D8               	btfss	status,2,c
+   878  00152C  EF9A  F00A         	goto	u1111
+   879  001530  EF9C  F00A         	goto	u1110
+   880  001534                     u1111:
+   881  001534  EFAA  F00A         	goto	l1753
+   882  001538                     u1110:
+   883  001538  0E54               	movlw	84
+   884  00153A  6E54               	movwf	_lcdData^0,c
+   885  00153C  EC72  F00C         	call	_lcdOut	;wreg free
+   886  001540  0E68               	movlw	104
+   887  001542  6E54               	movwf	_lcdData^0,c
+   888  001544  EC72  F00C         	call	_lcdOut	;wreg free
+   889  001548  0E72               	movlw	114
+   890  00154A  6E54               	movwf	_lcdData^0,c
+   891  00154C  EC72  F00C         	call	_lcdOut	;wreg free
+   892  001550  EC58  F00C         	call	_line2	;wreg free
+   893  001554                     l1753:
+   894  001554  0E05               	movlw	5
+   895  001556  1864               	xorwf	_daynumber^0,w,c
+   896  001558  A4D8               	btfss	status,2,c
+   897  00155A  EFB1  F00A         	goto	u1121
+   898  00155E  EFB3  F00A         	goto	u1120
+   899  001562                     u1121:
+   900  001562  EFC1  F00A         	goto	l1767
+   901  001566                     u1120:
+   902  001566  0E46               	movlw	70
+   903  001568  6E54               	movwf	_lcdData^0,c
+   904  00156A  EC72  F00C         	call	_lcdOut	;wreg free
+   905  00156E  0E72               	movlw	114
+   906  001570  6E54               	movwf	_lcdData^0,c
+   907  001572  EC72  F00C         	call	_lcdOut	;wreg free
+   908  001576  0E69               	movlw	105
+   909  001578  6E54               	movwf	_lcdData^0,c
+   910  00157A  EC72  F00C         	call	_lcdOut	;wreg free
+   911  00157E  EC58  F00C         	call	_line2	;wreg free
+   912  001582                     l1767:
+   913  001582  0E06               	movlw	6
+   914  001584  1864               	xorwf	_daynumber^0,w,c
+   915  001586  A4D8               	btfss	status,2,c
+   916  001588  EFC8  F00A         	goto	u1131
+   917  00158C  EFCA  F00A         	goto	u1130
+   918  001590                     u1131:
+   919  001590  EFD8  F00A         	goto	l1781
+   920  001594                     u1130:
+   921  001594  0E53               	movlw	83
+   922  001596  6E54               	movwf	_lcdData^0,c
+   923  001598  EC72  F00C         	call	_lcdOut	;wreg free
+   924  00159C  0E61               	movlw	97
+   925  00159E  6E54               	movwf	_lcdData^0,c
+   926  0015A0  EC72  F00C         	call	_lcdOut	;wreg free
+   927  0015A4  0E74               	movlw	116
+   928  0015A6  6E54               	movwf	_lcdData^0,c
+   929  0015A8  EC72  F00C         	call	_lcdOut	;wreg free
+   930  0015AC  EC58  F00C         	call	_line2	;wreg free
+   931  0015B0                     l1781:
+   932  0015B0  0E07               	movlw	7
+   933  0015B2  1864               	xorwf	_daynumber^0,w,c
+   934  0015B4  A4D8               	btfss	status,2,c
+   935  0015B6  EFDF  F00A         	goto	u1141
+   936  0015BA  EFE1  F00A         	goto	u1140
+   937  0015BE                     u1141:
+   938  0015BE  EFEF  F00A         	goto	l1795
+   939  0015C2                     u1140:
+   940  0015C2  0E53               	movlw	83
+   941  0015C4  6E54               	movwf	_lcdData^0,c
+   942  0015C6  EC72  F00C         	call	_lcdOut	;wreg free
+   943  0015CA  0E75               	movlw	117
+   944  0015CC  6E54               	movwf	_lcdData^0,c
+   945  0015CE  EC72  F00C         	call	_lcdOut	;wreg free
+   946  0015D2  0E6E               	movlw	110
+   947  0015D4  6E54               	movwf	_lcdData^0,c
+   948  0015D6  EC72  F00C         	call	_lcdOut	;wreg free
+   949  0015DA  EC58  F00C         	call	_line2	;wreg free
+   950  0015DE                     l1795:
+   951  0015DE  0E00               	movlw	0
+   952  0015E0  6E55               	movwf	_n^0,c
+   953  0015E2                     l1797:
+   954  0015E2  0E1C               	movlw	28
+   955  0015E4  6455               	cpfsgt	_n^0,c
+   956  0015E6  EFF7  F00A         	goto	u1151
+   957  0015EA  EFF9  F00A         	goto	u1150
+   958  0015EE                     u1151:
+   959  0015EE  EFFB  F00A         	goto	l1801
+   960  0015F2                     u1150:
+   961  0015F2  EF0C  F00B         	goto	l1809
+   962  0015F6                     l1801:
+   963  0015F6  0E00               	movlw	0
+   964  0015F8  6ED7               	movwf	215,c	;volatile
+   965  0015FA  0E00               	movlw	0
+   966  0015FC  6ED6               	movwf	214,c	;volatile
+   967  0015FE                     l1803:
+   968  0015FE  50D7               	movf	215,w,c	;volatile
+   969  001600  E108               	bnz	u1160
+   970  001602  28D6               	incf	214,w,c	;volatile
+   971  001604  A0D8               	btfss	status,0,c
+   972  001606  EF07  F00B         	goto	u1161
+   973  00160A  EF09  F00B         	goto	u1160
+   974  00160E                     u1161:
+   975  00160E  EFFF  F00A         	goto	l1803
+   976  001612                     u1160:
+   977  001612  2A55               	incf	_n^0,f,c
+   978  001614  EFF1  F00A         	goto	l1797
+   979  001618                     l1809:
+   980  001618  2A63               	incf	_secunits^0,f,c
+   981  00161A  0E3A               	movlw	58
+   982  00161C  1863               	xorwf	_secunits^0,w,c
+   983  00161E  A4D8               	btfss	status,2,c
+   984  001620  EF14  F00B         	goto	u1171
+   985  001624  EF16  F00B         	goto	u1170
+   986  001628                     u1171:
+   987  001628  EF6D  F00B         	goto	l1853
+   988  00162C                     u1170:
+   989  00162C  0E30               	movlw	48
+   990  00162E  6E63               	movwf	_secunits^0,c
+   991  001630  2A62               	incf	_sectens^0,f,c
+   992  001632  0E36               	movlw	54
+   993  001634  1862               	xorwf	_sectens^0,w,c
+   994  001636  A4D8               	btfss	status,2,c
+   995  001638  EF20  F00B         	goto	u1181
+   996  00163C  EF22  F00B         	goto	u1180
+   997  001640                     u1181:
+   998  001640  EF4B  F00B         	goto	l1841
+   999  001644                     u1180:
+  1000  001644  0E30               	movlw	48
+  1001  001646  6E62               	movwf	_sectens^0,c
+  1002  001648  2A61               	incf	_minunits^0,f,c
+  1003  00164A  0E3A               	movlw	58
+  1004  00164C  1861               	xorwf	_minunits^0,w,c
+  1005  00164E  A4D8               	btfss	status,2,c
+  1006  001650  EF2C  F00B         	goto	u1191
+  1007  001654  EF2E  F00B         	goto	u1190
+  1008  001658                     u1191:
+  1009  001658  EF4B  F00B         	goto	l1841
+  1010  00165C                     u1190:
+  1011  00165C  0E30               	movlw	48
+  1012  00165E  6E61               	movwf	_minunits^0,c
+  1013  001660  2A60               	incf	_mintens^0,f,c
+  1014  001662  0E36               	movlw	54
+  1015  001664  1860               	xorwf	_mintens^0,w,c
+  1016  001666  A4D8               	btfss	status,2,c
+  1017  001668  EF38  F00B         	goto	u1201
+  1018  00166C  EF3A  F00B         	goto	u1200
+  1019  001670                     u1201:
+  1020  001670  EF4B  F00B         	goto	l1841
+  1021  001674                     u1200:
+  1022  001674  0E30               	movlw	48
+  1023  001676  6E60               	movwf	_mintens^0,c
+  1024  001678  2A5F               	incf	_hourunits^0,f,c
+  1025  00167A  0E3A               	movlw	58
+  1026  00167C  185F               	xorwf	_hourunits^0,w,c
+  1027  00167E  A4D8               	btfss	status,2,c
+  1028  001680  EF44  F00B         	goto	u1211
+  1029  001684  EF46  F00B         	goto	u1210
+  1030  001688                     u1211:
+  1031  001688  EF4B  F00B         	goto	l206
+  1032  00168C                     u1210:
+  1033  00168C  0E30               	movlw	48
+  1034  00168E  6E5F               	movwf	_hourunits^0,c
+  1035  001690  2A5E               	incf	_hourtens^0,f,c
+  1036  001692  EF4B  F00B         	goto	l1841
+  1037  001696                     l206:
+  1038  001696                     l1841:
+  1039  001696  0E32               	movlw	50
+  1040  001698  185E               	xorwf	_hourtens^0,w,c
+  1041  00169A  A4D8               	btfss	status,2,c
+  1042  00169C  EF52  F00B         	goto	u1221
+  1043  0016A0  EF54  F00B         	goto	u1220
+  1044  0016A4                     u1221:
+  1045  0016A4  EF6D  F00B         	goto	l1853
+  1046  0016A8                     u1220:
+  1047  0016A8  0E34               	movlw	52
+  1048  0016AA  185F               	xorwf	_hourunits^0,w,c
+  1049  0016AC  A4D8               	btfss	status,2,c
+  1050  0016AE  EF5B  F00B         	goto	u1231
+  1051  0016B2  EF5D  F00B         	goto	u1230
+  1052  0016B6                     u1231:
+  1053  0016B6  EF6D  F00B         	goto	l1853
+  1054  0016BA                     u1230:
+  1055  0016BA  0E30               	movlw	48
+  1056  0016BC  6E5E               	movwf	_hourtens^0,c
+  1057  0016BE  0E30               	movlw	48
+  1058  0016C0  6E5F               	movwf	_hourunits^0,c
+  1059  0016C2  2A64               	incf	_daynumber^0,f,c
+  1060  0016C4  0E08               	movlw	8
+  1061  0016C6  1864               	xorwf	_daynumber^0,w,c
+  1062  0016C8  A4D8               	btfss	status,2,c
+  1063  0016CA  EF69  F00B         	goto	u1241
+  1064  0016CE  EF6B  F00B         	goto	u1240
+  1065  0016D2                     u1241:
+  1066  0016D2  EF6D  F00B         	goto	l1853
+  1067  0016D6                     u1240:
+  1068  0016D6  0E01               	movlw	1
+  1069  0016D8  6E64               	movwf	_daynumber^0,c
+  1070  0016DA                     l1853:
+  1071  0016DA  EC58  F00C         	call	_line2	;wreg free
+  1072  0016DE  C05E  F054         	movff	_hourtens,_lcdData
+  1073  0016E2  EC72  F00C         	call	_lcdOut	;wreg free
+  1074  0016E6  C05F  F054         	movff	_hourunits,_lcdData
+  1075  0016EA  EC72  F00C         	call	_lcdOut	;wreg free
+  1076  0016EE  0E3A               	movlw	58
+  1077  0016F0  6E54               	movwf	_lcdData^0,c
+  1078  0016F2  EC72  F00C         	call	_lcdOut	;wreg free
+  1079  0016F6  C060  F054         	movff	_mintens,_lcdData
+  1080  0016FA  EC72  F00C         	call	_lcdOut	;wreg free
+  1081  0016FE  C061  F054         	movff	_minunits,_lcdData
+  1082  001702  EC72  F00C         	call	_lcdOut	;wreg free
+  1083  001706  0E3A               	movlw	58
+  1084  001708  6E54               	movwf	_lcdData^0,c
+  1085  00170A  EC72  F00C         	call	_lcdOut	;wreg free
+  1086  00170E  C062  F054         	movff	_sectens,_lcdData
+  1087  001712  EC72  F00C         	call	_lcdOut	;wreg free
+  1088  001716  C063  F054         	movff	_secunits,_lcdData
+  1089  00171A  EC72  F00C         	call	_lcdOut	;wreg free
+  1090  00171E  0EA0               	movlw	160
+  1091  001720  6E54               	movwf	_lcdData^0,c
+  1092  001722  EF4D  F00A         	goto	l1695
+  1093  001726  EF00  F000         	goto	start
+  1094  00172A                     __end_of_main:
+  1095                           	opt callstack 0
+  1096                           
+  1097 ;; *************** function _writeString *****************
+  1098 ;; Defined at:
+  1099 ;;		line 123 in file "24HrDayLCDClcok.c"
+  1100 ;; Parameters:    Size  Location     Type
+  1101 ;;  words           2    0[COMRAM] PTR const unsigned char 
+  1102 ;;		 -> STR_5(16), STR_4(8), STR_3(6), STR_2(14), 
+  1103 ;;		 -> STR_1(12), 
+  1104 ;; Auto vars:     Size  Location     Type
+  1105 ;;		None
+  1106 ;; Return value:  Size  Location     Type
+  1107 ;;                  1    wreg      void 
+  1108 ;; Registers used:
+  1109 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1110 ;; Tracked objects:
+  1111 ;;		On entry : 0/0
+  1112 ;;		On exit  : 0/0
+  1113 ;;		Unchanged: 0/0
+  1114 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1115 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1116 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1117 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1118 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1119 ;;Total ram usage:        2 bytes
+  1120 ;; Hardware stack levels used:    1
+  1121 ;; Hardware stack levels required when called:    2
+  1122 ;; This function calls:
+  1123 ;;		_lcdOut
+  1124 ;; This function is called by:
+  1125 ;;		_main
+  1126 ;; This function uses a non-reentrant model
+  1127 ;;
+  1128                           
+  1129                           	psect	text1
+  1130  0017F2                     __ptext1:
+  1131                           	opt callstack 0
+  1132  0017F2                     _writeString:
+  1133                           	opt callstack 28
+  1134  0017F2  EF06  F00C         	goto	l1439
+  1135  0017F6                     l1433:
+  1136  0017F6  C065  FFF6         	movff	writeString@words,tblptrl
+  1137  0017FA  C066  FFF7         	movff	writeString@words+1,tblptrh
+  1138  0017FE                     	if	0	;tblptru may be non-zero
+  1139  0017FE                     	endif
+  1140  0017FE                     	if	0	;tblptru may be non-zero
+  1141  0017FE                     	endif
+  1142  0017FE  0008               	tblrd		*
+  1143  001800  CFF5 F054          	movff	tablat,_lcdData
+  1144  001804  EC72  F00C         	call	_lcdOut	;wreg free
+  1145  001808  4A65               	infsnz	writeString@words^0,f,c
+  1146  00180A  2A66               	incf	(writeString@words+1)^0,f,c
+  1147  00180C                     l1439:
+  1148  00180C  C065  FFF6         	movff	writeString@words,tblptrl
+  1149  001810  C066  FFF7         	movff	writeString@words+1,tblptrh
+  1150  001814                     	if	0	;tblptru may be non-zero
+  1151  001814                     	endif
+  1152  001814                     	if	0	;tblptru may be non-zero
+  1153  001814                     	endif
+  1154  001814  0008               	tblrd		*
+  1155  001816  50F5               	movf	tablat,w,c
+  1156  001818  0900               	iorlw	0
+  1157  00181A  A4D8               	btfss	status,2,c
+  1158  00181C  EF12  F00C         	goto	u661
+  1159  001820  EF14  F00C         	goto	u660
+  1160  001824                     u661:
+  1161  001824  EFFB  F00B         	goto	l1433
+  1162  001828                     u660:
+  1163  001828  0012               	return		;funcret
+  1164  00182A                     __end_of_writeString:
+  1165                           	opt callstack 0
+  1166                           
+  1167 ;; *************** function _shiftcurleft *****************
+  1168 ;; Defined at:
+  1169 ;;		line 102 in file "24HrDayLCDClcok.c"
+  1170 ;; Parameters:    Size  Location     Type
+  1171 ;;  l               1    wreg     unsigned char 
+  1172 ;; Auto vars:     Size  Location     Type
+  1173 ;;  l               1    0[COMRAM] unsigned char 
+  1174 ;; Return value:  Size  Location     Type
+  1175 ;;                  1    wreg      void 
+  1176 ;; Registers used:
+  1177 ;;		wreg, status,2, status,0, cstack
+  1178 ;; Tracked objects:
+  1179 ;;		On entry : 0/0
+  1180 ;;		On exit  : 0/0
+  1181 ;;		Unchanged: 0/0
+  1182 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1183 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1184 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1185 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1186 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1187 ;;Total ram usage:        1 bytes
+  1188 ;; Hardware stack levels used:    1
+  1189 ;; Hardware stack levels required when called:    2
+  1190 ;; This function calls:
+  1191 ;;		_lcdOut
+  1192 ;; This function is called by:
+  1193 ;;		_main
+  1194 ;; This function uses a non-reentrant model
+  1195 ;;
+  1196                           
+  1197                           	psect	text2
+  1198  001860                     __ptext2:
+  1199                           	opt callstack 0
+  1200  001860                     _shiftcurleft:
+  1201                           	opt callstack 28
+  1202                           
+  1203                           ;incstack = 0
+  1204                           ;shiftcurleft@l stored from wreg
+  1205  001860  6E65               	movwf	shiftcurleft@l^0,c
+  1206  001862  0E00               	movlw	0
+  1207  001864  6E55               	movwf	_n^0,c
+  1208  001866  EF3E  F00C         	goto	l955
+  1209  00186A                     l947:
+  1210  00186A  0E00               	movlw	0
+  1211  00186C  6E52               	movwf	_rsLine^0,c
+  1212  00186E  0E10               	movlw	16
+  1213  001870  6E54               	movwf	_lcdData^0,c
+  1214  001872  EC72  F00C         	call	_lcdOut	;wreg free
+  1215  001876  0E10               	movlw	16
+  1216  001878  6E52               	movwf	_rsLine^0,c
+  1217  00187A  2A55               	incf	_n^0,f,c
+  1218  00187C                     l955:
+  1219  00187C  5065               	movf	shiftcurleft@l^0,w,c
+  1220  00187E  5C55               	subwf	_n^0,w,c
+  1221  001880  A0D8               	btfss	status,0,c
+  1222  001882  EF45  F00C         	goto	u41
+  1223  001886  EF47  F00C         	goto	u40
+  1224  00188A                     u41:
+  1225  00188A  EF35  F00C         	goto	l947
+  1226  00188E                     u40:
+  1227  00188E  0012               	return		;funcret
+  1228  001890                     __end_of_shiftcurleft:
+  1229                           	opt callstack 0
+  1230                           
+  1231 ;; *************** function _setUpTheLCD *****************
+  1232 ;; Defined at:
+  1233 ;;		line 64 in file "24HrDayLCDClcok.c"
+  1234 ;; Parameters:    Size  Location     Type
+  1235 ;;		None
+  1236 ;; Auto vars:     Size  Location     Type
+  1237 ;;		None
+  1238 ;; Return value:  Size  Location     Type
+  1239 ;;                  1    wreg      void 
+  1240 ;; Registers used:
+  1241 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1242 ;; Tracked objects:
+  1243 ;;		On entry : 0/0
+  1244 ;;		On exit  : 0/0
+  1245 ;;		Unchanged: 0/0
+  1246 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1247 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1248 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1249 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1250 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1251 ;;Total ram usage:        0 bytes
+  1252 ;; Hardware stack levels used:    1
+  1253 ;; Hardware stack levels required when called:    2
+  1254 ;; This function calls:
+  1255 ;;		_lcdOut
+  1256 ;; This function is called by:
+  1257 ;;		_main
+  1258 ;; This function uses a non-reentrant model
+  1259 ;;
+  1260                           
+  1261                           	psect	text3
+  1262  00172A                     __ptext3:
+  1263                           	opt callstack 0
+  1264  00172A                     _setUpTheLCD:
+  1265                           	opt callstack 28
+  1266  00172A  0E00               	movlw	0
+  1267  00172C  6ED7               	movwf	215,c	;volatile
+  1268  00172E  0E00               	movlw	0
+  1269  001730  6ED6               	movwf	214,c	;volatile
+  1270  001732                     l919:
+  1271  001732  50D7               	movf	215,w,c	;volatile
+  1272  001734  E108               	bnz	u20
+  1273  001736  28D6               	incf	214,w,c	;volatile
+  1274  001738  A0D8               	btfss	status,0,c
+  1275  00173A  EFA1  F00B         	goto	u21
+  1276  00173E  EFA3  F00B         	goto	u20
+  1277  001742                     u21:
+  1278  001742  EF99  F00B         	goto	l919
+  1279  001746                     u20:
+  1280  001746  0E00               	movlw	0
+  1281  001748  6E55               	movwf	_n^0,c
+  1282  00174A  0E00               	movlw	0
+  1283  00174C  6E52               	movwf	_rsLine^0,c
+  1284  00174E  EFB4  F00B         	goto	l929
+  1285  001752                     l923:
+  1286  001752  0E56               	movlw	low _lcdInitialise
+  1287  001754  2455               	addwf	_n^0,w,c
+  1288  001756  6ED9               	movwf	fsr2l,c
+  1289  001758  6ADA               	clrf	fsr2h,c
+  1290  00175A  0E00               	movlw	high _lcdInitialise
+  1291  00175C  22DA               	addwfc	fsr2h,f,c
+  1292  00175E  50DF               	movf	indf2,w,c
+  1293  001760  6E54               	movwf	_lcdData^0,c
+  1294  001762  EC72  F00C         	call	_lcdOut	;wreg free
+  1295  001766  2A55               	incf	_n^0,f,c
+  1296  001768                     l929:
+  1297  001768  0E07               	movlw	7
+  1298  00176A  6455               	cpfsgt	_n^0,c
+  1299  00176C  EFBA  F00B         	goto	u31
+  1300  001770  EFBC  F00B         	goto	u30
+  1301  001774                     u31:
+  1302  001774  EFA9  F00B         	goto	l923
+  1303  001778                     u30:
+  1304  001778  0E10               	movlw	16
+  1305  00177A  6E52               	movwf	_rsLine^0,c
+  1306  00177C  0012               	return		;funcret
+  1307  00177E                     __end_of_setUpTheLCD:
+  1308                           	opt callstack 0
+  1309                           
+  1310 ;; *************** function _line2 *****************
+  1311 ;; Defined at:
+  1312 ;;		line 77 in file "24HrDayLCDClcok.c"
+  1313 ;; Parameters:    Size  Location     Type
+  1314 ;;		None
+  1315 ;; Auto vars:     Size  Location     Type
+  1316 ;;		None
+  1317 ;; Return value:  Size  Location     Type
+  1318 ;;                  1    wreg      void 
+  1319 ;; Registers used:
+  1320 ;;		wreg, status,2, status,0, cstack
+  1321 ;; Tracked objects:
+  1322 ;;		On entry : 0/0
+  1323 ;;		On exit  : 0/0
+  1324 ;;		Unchanged: 0/0
+  1325 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1326 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1327 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1328 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1329 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1330 ;;Total ram usage:        0 bytes
+  1331 ;; Hardware stack levels used:    1
+  1332 ;; Hardware stack levels required when called:    2
+  1333 ;; This function calls:
+  1334 ;;		_lcdOut
+  1335 ;; This function is called by:
+  1336 ;;		_main
+  1337 ;; This function uses a non-reentrant model
+  1338 ;;
+  1339                           
+  1340                           	psect	text4
+  1341  0018B0                     __ptext4:
+  1342                           	opt callstack 0
+  1343  0018B0                     _line2:
+  1344                           	opt callstack 28
+  1345  0018B0  0E00               	movlw	0
+  1346  0018B2  6E52               	movwf	_rsLine^0,c
+  1347  0018B4  0EC0               	movlw	192
+  1348  0018B6  6E54               	movwf	_lcdData^0,c
+  1349  0018B8  EC72  F00C         	call	_lcdOut	;wreg free
+  1350  0018BC  0E10               	movlw	16
+  1351  0018BE  6E52               	movwf	_rsLine^0,c
+  1352  0018C0  0012               	return		;funcret
+  1353  0018C2                     __end_of_line2:
+  1354                           	opt callstack 0
+  1355                           
+  1356 ;; *************** function _initialise *****************
+  1357 ;; Defined at:
+  1358 ;;		line 1 in file "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h"
+  1359 ;; Parameters:    Size  Location     Type
+  1360 ;;		None
+  1361 ;; Auto vars:     Size  Location     Type
+  1362 ;;		None
+  1363 ;; Return value:  Size  Location     Type
+  1364 ;;                  1    wreg      void 
+  1365 ;; Registers used:
+  1366 ;;		wreg, status,2
+  1367 ;; Tracked objects:
+  1368 ;;		On entry : 0/0
+  1369 ;;		On exit  : 0/0
+  1370 ;;		Unchanged: 0/0
+  1371 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1372 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1373 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1374 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1375 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1376 ;;Total ram usage:        0 bytes
+  1377 ;; Hardware stack levels used:    1
+  1378 ;; This function calls:
+  1379 ;;		Nothing
+  1380 ;; This function is called by:
+  1381 ;;		_main
+  1382 ;; This function uses a non-reentrant model
+  1383 ;;
+  1384                           
+  1385                           	psect	text5
+  1386  0017B8                     __ptext5:
+  1387                           	opt callstack 0
+  1388  0017B8                     _initialise:
+  1389                           	opt callstack 30
+  1390  0017B8                     
+  1391                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 3: PORTA = 0;
+  1392  0017B8  0E00               	movlw	0
+  1393  0017BA  6E80               	movwf	128,c	;volatile
+  1394                           
+  1395                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 4: PORTB = 0;
+  1396  0017BC  0E00               	movlw	0
+  1397  0017BE  6E81               	movwf	129,c	;volatile
+  1398                           
+  1399                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 5: PORTC = 0;
+  1400  0017C0  0E00               	movlw	0
+  1401  0017C2  6E82               	movwf	130,c	;volatile
+  1402                           
+  1403                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 6: PORTD = 0;
+  1404  0017C4  0E00               	movlw	0
+  1405  0017C6  6E83               	movwf	131,c	;volatile
+  1406                           
+  1407                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 7: PORTE = 0;
+  1408  0017C8  0E00               	movlw	0
+  1409  0017CA  6E84               	movwf	132,c	;volatile
+  1410  0017CC                     
+  1411                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 8: TRISA = 0XFF;
+  1412  0017CC  6892               	setf	146,c	;volatile
+  1413                           
+  1414                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 9: TRISB = 0;
+  1415  0017CE  0E00               	movlw	0
+  1416  0017D0  6E93               	movwf	147,c	;volatile
+  1417                           
+  1418                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 10: TRISC = 0;
+  1419  0017D2  0E00               	movlw	0
+  1420  0017D4  6E94               	movwf	148,c	;volatile
+  1421  0017D6                     
+  1422                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 11: TRISD = 0b111111
+      +                          11;
+  1423  0017D6  6895               	setf	149,c	;volatile
+  1424                           
+  1425                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 12: TRISE = 0;
+  1426  0017D8  0E00               	movlw	0
+  1427  0017DA  6E96               	movwf	150,c	;volatile
+  1428                           
+  1429                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 13: ADCON0 = 0;
+  1430  0017DC  0E00               	movlw	0
+  1431  0017DE  6EC2               	movwf	194,c	;volatile
+  1432                           
+  1433                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 14: ADCON1 = 0b00001
+      +                          111;
+  1434  0017E0  0E0F               	movlw	15
+  1435  0017E2  6EC1               	movwf	193,c	;volatile
+  1436                           
+  1437                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 15: OSCTUNE = 0;
+  1438  0017E4  0E00               	movlw	0
+  1439  0017E6  6E9B               	movwf	155,c	;volatile
+  1440                           
+  1441                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 16: OSCCON = 0b01110
+      +                          100;
+  1442  0017E8  0E74               	movlw	116
+  1443  0017EA  6ED3               	movwf	211,c	;volatile
+  1444                           
+  1445                           ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\PICSetUp.h: 17: T0CON = 0b110001
+      +                          11;
+  1446  0017EC  0EC7               	movlw	199
+  1447  0017EE  6ED5               	movwf	213,c	;volatile
+  1448  0017F0  0012               	return		;funcret
+  1449  0017F2                     __end_of_initialise:
+  1450                           	opt callstack 0
+  1451                           
+  1452 ;; *************** function _debounce *****************
+  1453 ;; Defined at:
+  1454 ;;		line 132 in file "24HrDayLCDClcok.c"
+  1455 ;; Parameters:    Size  Location     Type
+  1456 ;;		None
+  1457 ;; Auto vars:     Size  Location     Type
+  1458 ;;		None
+  1459 ;; Return value:  Size  Location     Type
+  1460 ;;                  1    wreg      void 
+  1461 ;; Registers used:
+  1462 ;;		wreg, status,2, status,0
+  1463 ;; Tracked objects:
+  1464 ;;		On entry : 0/0
+  1465 ;;		On exit  : 0/0
+  1466 ;;		Unchanged: 0/0
+  1467 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1468 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1469 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1470 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1471 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1472 ;;Total ram usage:        0 bytes
+  1473 ;; Hardware stack levels used:    1
+  1474 ;; This function calls:
+  1475 ;;		Nothing
+  1476 ;; This function is called by:
+  1477 ;;		_main
+  1478 ;; This function uses a non-reentrant model
+  1479 ;;
+  1480                           
+  1481                           	psect	text6
+  1482  001890                     __ptext6:
+  1483                           	opt callstack 0
+  1484  001890                     _debounce:
+  1485                           	opt callstack 30
+  1486  001890  0E00               	movlw	0
+  1487  001892  6ED7               	movwf	215,c	;volatile
+  1488  001894  0E00               	movlw	0
+  1489  001896  6ED6               	movwf	214,c	;volatile
+  1490  001898                     l969:
+  1491  001898  50D7               	movf	215,w,c	;volatile
+  1492  00189A  E109               	bnz	u60
+  1493  00189C  0E65               	movlw	101
+  1494  00189E  5CD6               	subwf	214,w,c	;volatile
+  1495  0018A0  A0D8               	btfss	status,0,c
+  1496  0018A2  EF55  F00C         	goto	u61
+  1497  0018A6  EF57  F00C         	goto	u60
+  1498  0018AA                     u61:
+  1499  0018AA  EF4C  F00C         	goto	l969
+  1500  0018AE                     u60:
+  1501  0018AE  0012               	return		;funcret
+  1502  0018B0                     __end_of_debounce:
+  1503                           	opt callstack 0
+  1504                           
+  1505 ;; *************** function _clearTheScreen *****************
+  1506 ;; Defined at:
+  1507 ;;		line 84 in file "24HrDayLCDClcok.c"
+  1508 ;; Parameters:    Size  Location     Type
+  1509 ;;		None
+  1510 ;; Auto vars:     Size  Location     Type
+  1511 ;;		None
+  1512 ;; Return value:  Size  Location     Type
+  1513 ;;                  1    wreg      void 
+  1514 ;; Registers used:
+  1515 ;;		wreg, status,2, status,0, cstack
+  1516 ;; Tracked objects:
+  1517 ;;		On entry : 0/0
+  1518 ;;		On exit  : 0/0
+  1519 ;;		Unchanged: 0/0
+  1520 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1521 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1522 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1523 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1524 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1525 ;;Total ram usage:        0 bytes
+  1526 ;; Hardware stack levels used:    1
+  1527 ;; Hardware stack levels required when called:    2
+  1528 ;; This function calls:
+  1529 ;;		_lcdOut
+  1530 ;; This function is called by:
+  1531 ;;		_main
+  1532 ;; This function uses a non-reentrant model
+  1533 ;;
+  1534                           
+  1535                           	psect	text7
+  1536  0018C2                     __ptext7:
+  1537                           	opt callstack 0
+  1538  0018C2                     _clearTheScreen:
+  1539                           	opt callstack 28
+  1540  0018C2  0E00               	movlw	0
+  1541  0018C4  6E52               	movwf	_rsLine^0,c
+  1542  0018C6  0E01               	movlw	1
+  1543  0018C8  6E54               	movwf	_lcdData^0,c
+  1544  0018CA  EC72  F00C         	call	_lcdOut	;wreg free
+  1545  0018CE  0E10               	movlw	16
+  1546  0018D0  6E52               	movwf	_rsLine^0,c
+  1547  0018D2  0012               	return		;funcret
+  1548  0018D4                     __end_of_clearTheScreen:
+  1549                           	opt callstack 0
+  1550                           
+  1551 ;; *************** function _lcdOut *****************
+  1552 ;; Defined at:
+  1553 ;;		line 58 in file "24HrDayLCDClcok.c"
+  1554 ;; Parameters:    Size  Location     Type
+  1555 ;;		None
+  1556 ;; Auto vars:     Size  Location     Type
+  1557 ;;		None
+  1558 ;; Return value:  Size  Location     Type
+  1559 ;;                  1    wreg      void 
+  1560 ;; Registers used:
+  1561 ;;		wreg, status,2, status,0, cstack
+  1562 ;; Tracked objects:
+  1563 ;;		On entry : 0/0
+  1564 ;;		On exit  : 0/0
+  1565 ;;		Unchanged: 0/0
+  1566 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1567 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1568 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1569 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1570 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1571 ;;Total ram usage:        0 bytes
+  1572 ;; Hardware stack levels used:    1
+  1573 ;; Hardware stack levels required when called:    1
+  1574 ;; This function calls:
+  1575 ;;		_sendData
+  1576 ;; This function is called by:
+  1577 ;;		_setUpTheLCD
+  1578 ;;		_line2
+  1579 ;;		_clearTheScreen
+  1580 ;;		_shiftcurleft
+  1581 ;;		_writeString
+  1582 ;;		_main
+  1583 ;;		_sendcursorhome
+  1584 ;;		_shiftcurright
+  1585 ;; This function uses a non-reentrant model
+  1586 ;;
+  1587                           
+  1588                           	psect	text8
+  1589  0018E4                     __ptext8:
+  1590                           	opt callstack 0
+  1591  0018E4                     _lcdOut:
+  1592                           	opt callstack 28
+  1593  0018E4  C054  F053         	movff	_lcdData,_lcdTempData
+  1594  0018E8  EC15  F00C         	call	_sendData	;wreg free
+  1595  0018EC  EC15  F00C         	call	_sendData	;wreg free
+  1596  0018F0  0012               	return		;funcret
+  1597  0018F2                     __end_of_lcdOut:
+  1598                           	opt callstack 0
+  1599                           
+  1600 ;; *************** function _sendData *****************
+  1601 ;; Defined at:
+  1602 ;;		line 48 in file "24HrDayLCDClcok.c"
+  1603 ;; Parameters:    Size  Location     Type
+  1604 ;;		None
+  1605 ;; Auto vars:     Size  Location     Type
+  1606 ;;		None
+  1607 ;; Return value:  Size  Location     Type
+  1608 ;;                  1    wreg      void 
+  1609 ;; Registers used:
+  1610 ;;		wreg, status,2, status,0
+  1611 ;; Tracked objects:
+  1612 ;;		On entry : 0/0
+  1613 ;;		On exit  : 0/0
+  1614 ;;		Unchanged: 0/0
+  1615 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1616 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1617 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1618 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1619 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1620 ;;Total ram usage:        0 bytes
+  1621 ;; Hardware stack levels used:    1
+  1622 ;; This function calls:
+  1623 ;;		Nothing
+  1624 ;; This function is called by:
+  1625 ;;		_lcdOut
+  1626 ;; This function uses a non-reentrant model
+  1627 ;;
+  1628                           
+  1629                           	psect	text9
+  1630  00182A                     __ptext9:
+  1631                           	opt callstack 0
+  1632  00182A                     _sendData:
+  1633                           	opt callstack 28
+  1634  00182A  3A53               	swapf	_lcdTempData^0,f,c
+  1635  00182C  5053               	movf	_lcdTempData^0,w,c
+  1636  00182E  0B0F               	andlw	15
+  1637  001830  6E54               	movwf	_lcdData^0,c
+  1638  001832  5054               	movf	_lcdData^0,w,c
+  1639  001834  1052               	iorwf	_rsLine^0,w,c
+  1640  001836  6E54               	movwf	_lcdData^0,c
+  1641  001838  C054  FF81         	movff	_lcdData,3969	;volatile
+  1642  00183C  8A81               	bsf	129,5,c	;volatile
+  1643  00183E  9A81               	bcf	129,5,c	;volatile
+  1644  001840  0E00               	movlw	0
+  1645  001842  6ED7               	movwf	215,c	;volatile
+  1646  001844  0E00               	movlw	0
+  1647  001846  6ED6               	movwf	214,c	;volatile
+  1648  001848                     l905:
+  1649  001848  50D7               	movf	215,w,c	;volatile
+  1650  00184A  E109               	bnz	u10
+  1651  00184C  0E14               	movlw	20
+  1652  00184E  5CD6               	subwf	214,w,c	;volatile
+  1653  001850  A0D8               	btfss	status,0,c
+  1654  001852  EF2D  F00C         	goto	u11
+  1655  001856  EF2F  F00C         	goto	u10
+  1656  00185A                     u11:
+  1657  00185A  EF24  F00C         	goto	l905
+  1658  00185E                     u10:
+  1659  00185E  0012               	return		;funcret
+  1660  001860                     __end_of_sendData:
+  1661                           	opt callstack 0
+  1662                           
+  1663                           	psect	rparam
+  1664  0000                     tosu	equ	0xFFF
+  1665                           tosh	equ	0xFFE
+  1666                           tosl	equ	0xFFD
+  1667                           stkptr	equ	0xFFC
+  1668                           pclatu	equ	0xFFB
+  1669                           pclath	equ	0xFFA
+  1670                           pcl	equ	0xFF9
+  1671                           tblptru	equ	0xFF8
+  1672                           tblptrh	equ	0xFF7
+  1673                           tblptrl	equ	0xFF6
+  1674                           tablat	equ	0xFF5
+  1675                           prodh	equ	0xFF4
+  1676                           prodl	equ	0xFF3
+  1677                           indf0	equ	0xFEF
+  1678                           postinc0	equ	0xFEE
+  1679                           postdec0	equ	0xFED
+  1680                           preinc0	equ	0xFEC
+  1681                           plusw0	equ	0xFEB
+  1682                           fsr0h	equ	0xFEA
+  1683                           fsr0l	equ	0xFE9
+  1684                           wreg	equ	0xFE8
+  1685                           indf1	equ	0xFE7
+  1686                           postinc1	equ	0xFE6
+  1687                           postdec1	equ	0xFE5
+  1688                           preinc1	equ	0xFE4
+  1689                           plusw1	equ	0xFE3
+  1690                           fsr1h	equ	0xFE2
+  1691                           fsr1l	equ	0xFE1
+  1692                           bsr	equ	0xFE0
+  1693                           indf2	equ	0xFDF
+  1694                           postinc2	equ	0xFDE
+  1695                           postdec2	equ	0xFDD
+  1696                           preinc2	equ	0xFDC
+  1697                           plusw2	equ	0xFDB
+  1698                           fsr2h	equ	0xFDA
+  1699                           fsr2l	equ	0xFD9
+  1700                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     56
+    Constant    0
+    Data        15
+    BSS         85
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127      2     102
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15          128      0       0
+
+Pointer List with Targets:
+
+    writeString@words	PTR const unsigned char  size(2) Largest target is 16
+		 -> STR_5(CODE[16]), STR_4(CODE[8]), STR_3(CODE[6]), STR_2(CODE[14]), 
+		 -> STR_1(CODE[12]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_writeString
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     440
+                     _clearTheScreen
+                           _debounce
+                         _initialise
+                             _lcdOut
+                              _line2
+                        _setUpTheLCD
+                       _shiftcurleft
+                        _writeString
+ ---------------------------------------------------------------------------------
+ (1) _writeString                                          2     0      2     425
+                                              0 COMRAM     2     0      2
+                             _lcdOut
+ ---------------------------------------------------------------------------------
+ (1) _shiftcurleft                                         1     1      0      15
+                                              0 COMRAM     1     1      0
+                             _lcdOut
+ ---------------------------------------------------------------------------------
+ (1) _setUpTheLCD                                          0     0      0       0
+                             _lcdOut
+ ---------------------------------------------------------------------------------
+ (1) _line2                                                0     0      0       0
+                             _lcdOut
+ ---------------------------------------------------------------------------------
+ (1) _initialise                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _debounce                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _clearTheScreen                                       0     0      0       0
+                             _lcdOut
+ ---------------------------------------------------------------------------------
+ (2) _lcdOut                                               0     0      0       0
+                           _sendData
+ ---------------------------------------------------------------------------------
+ (3) _sendData                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _clearTheScreen
+     _lcdOut
+       _sendData
+   _debounce
+   _initialise
+   _lcdOut
+     _sendData
+   _line2
+     _lcdOut
+       _sendData
+   _setUpTheLCD
+     _lcdOut
+       _sendData
+   _shiftcurleft
+     _lcdOut
+       _sendData
+   _writeString
+     _lcdOut
+       _sendData
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F7F      0       0      37        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK15           80      0       0      35        0.0%
+BANK15              80      0       0      36        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F      2      66       1       80.3%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      66      34        0.0%
+DATA                 0      0      66       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Mon Mar 09 11:23:56 2020
+
+                      _n 0055                       l61 185E                       l39 17F0  
+                     l64 18F0                       l73 177C                       l76 18C0  
+                     l79 18D2                       l88 188E                       u10 185E  
+                     u11 185A                       u20 1746                       u21 1742  
+                     u30 1778                       u31 1774                       u40 188E  
+                     u41 188A                       u60 18AE                       u61 18AA  
+            __CFG_BORV$3 000000             __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000  
+           __CFG_CP2$OFF 000000                      l120 18AE                      l114 1828  
+                    l130 107C                      l132 108A                      l206 1696  
+                    l151 136A                      l135 10AC                      l127 105A  
+                    l145 1210                      l155 12A8                      l164 1338  
+                    l148 1236                      l166 1346                      l176 13CA  
+                    l187 1466                      l179 1402                      l189 1474  
+                    l901 183E                      l903 1840                      l911 17B8  
+                    l905 1848                      l913 17CC                      l921 1746  
+                    l907 18E4                      l915 17D6                      l931 1778  
+                    l923 1752                      l909 18E8                      l941 18CA  
+                    l933 18B0                      l925 1762                      l917 172A  
+                    l943 18CE                      l935 18B8                      l927 1766  
+                    l919 1732                      l951 1876                      l937 18BC  
+                    l929 1768                      l953 187A                      l945 1862  
+                    l891 182A                      l939 18C2                      l947 186A  
+                    l955 187C                      l893 182C                      l949 1872  
+                    l895 1832                      l967 1890                      l897 1838  
+                    l969 1898                      l899 183C             __CFG_CPB$OFF 000000  
+           __CFG_CPD$OFF 000000                      u700 1098                      u701 1094  
+                    u710 10AA                      u711 10A6                      u800 120C  
+                    u720 10BA                      u801 1208                      u721 10B6  
+                    u810 1220                      u730 10CA                      u811 121C  
+                    u731 10C6                      u660 1828                      u900 1308  
+                    u820 1232                      u740 10F8                      u661 1824  
+                    u901 1304                      u821 122E                      u741 10F4  
+                    u910 131A                      u830 1244                      u750 1126  
+                    u670 1068                      u911 1316                      u831 1240  
+                    u751 1122                      u671 1064                      u920 132C  
+                    u840 1294                      u760 1154                      u680 107A  
+                    u921 1328                      u841 1290                      u761 1150  
+                    u681 1076                      u930 1346                      u850 12A6  
+                    u770 1182                      u690 108A                      u931 1342  
+                    u851 12A2                      u771 117E                      u691 1086  
+                    u940 1354                      u860 12B6                      u780 11B0  
+                    u941 1350                      u861 12B2                      u781 11AC  
+                    u950 1366                      u870 12C8                      u790 11DE  
+                    u951 1362                      u871 12C4                      u791 11DA  
+                    u960 1378                      u880 12E0                      u961 1374  
+                    u881 12DC                      u970 13A4                      u890 12F2  
+                    u971 13A0                      u891 12EE                      u980 13C4  
+                    u981 13C0                      u990 13EE                      u991 13EA  
+                    _str 0001                      wreg 000FE8             __CFG_LVP$OFF 000000  
+           __CFG_WDT$OFF 000000                     l1501 113A                     l1431 17F2  
+                   l1511 115C                     l1503 113E                     l1433 17F6  
+                   l1601 12B6                     l1521 1182                     l1513 1164  
+                   l1505 1142                     l1441 103A                     l1435 1804  
+                   l1611 12F2                     l1603 12C8                     l1531 119A  
+                   l1523 1186                     l1515 1168                     l1507 1154  
+                   l1451 1068                     l1443 103E                     l1437 1808  
+                   l1701 14B2                     l1621 132C                     l1613 12FA  
+                   l1605 12CC                     l1541 11C0                     l1525 118A  
+                   l1533 119E                     l1517 116C                     l1509 1158  
+                   l1461 10AA                     l1453 106C                     l1445 1042  
+                   l1439 180C                     l1703 14B6                     l1711 14CA  
+                   l1623 1330                     l1615 1308                     l1607 12CE  
+                   l1551 11E2                     l1543 11C4                     l1535 11B0  
+                   l1527 1192                     l1519 1170                     l1471 10DA  
+                   l1463 10BA                     l1455 107A                     l1447 1046  
+                   l1801 15F6                     l1721 14F0                     l1713 14DC  
+                   l1705 14BE                     l1641 1390                     l1633 1378  
+                   l1625 1336                     l1617 130C                     l1609 12E0  
+                   l1553 11E6                     l1561 11FA                     l1545 11C8  
+                   l1537 11B4                     l1529 1196                     l1481 10FC  
+                   l1473 10DE                     l1465 10CA                     l1457 1098  
+                   l1449 1052                     l1811 161A                     l1803 15FE  
+                   l1731 1512                     l1723 14F4                     l1715 14E0  
+                   l1707 14C2                     l1651 13C4                     l1643 1394  
+                   l1635 137C                     l1627 1354                     l1619 131A  
+                   l1571 1244                     l1563 120C                     l1555 11EE  
+                   l1539 11B8                     l1547 11CC                     l1483 1100  
+                   l1491 1114                     l1475 10E2                     l1467 10CE  
+                   l1459 109C                     l1821 1648                     l1813 162C  
+                   l1805 1612                     l1741 1538                     l1733 151A  
+                   l1717 14E4                     l1725 14F8                     l1709 14C6  
+                   l1661 13EE                     l1637 1388                     l1629 1358  
+                   l1581 126C                     l1573 1248                     l1565 1220  
+                   l1557 11F2                     l1549 11DE                     l1493 1126  
+                   l1485 1108                     l1469 10D2                     l1477 10E6  
+                   l1831 1674                     l1823 164A                     l1815 1630  
+                   l1751 1550                     l1743 153C                     l1735 151E  
+                   l1727 150A                     l1719 14EC                     l1671 1426  
+                   l1663 13F2                     l1655 13CE                     l1647 13A8  
+                   l1639 138C                     l1591 1280                     l1583 1270  
+                   l1575 1258                     l1559 11F6                     l1495 112A  
+                   l1487 110C                     l1479 10F8                     l1567 1224  
+                   l1833 1678                     l1825 165C                     l1841 1696  
+                   l1817 1632                     l1809 1618                     l1761 1576  
+                   l1745 1540                     l1753 1554                     l1737 1522  
+                   l1729 150E                     l1681 145A                     l1673 1428  
+                   l1665 1400                     l1657 13D2                     l1649 13B0  
+                   l1593 1286                     l1585 1274                     l1577 125C  
+                   l1569 1232                     l1497 112E                     l1489 1110  
+                   l1851 16D6                     l1843 16A8                     l1835 167A  
+                   l1827 1660                     l1819 1644                     l1771 1598  
+                   l1763 157A                     l1755 1566                     l1747 1548  
+                   l1739 1526                     l1691 148A                     l1683 145E  
+                   l1675 1436                     l1667 1410                     l1659 13E0  
+                   l1595 1294                     l1587 1278                     l1579 1268  
+                   l1499 1136                     l1861 16EA                     l1845 16BA  
+                   l1837 168C                     l1829 1662                     l1853 16DA  
+                   l1773 159C                     l1781 15B0                     l1765 157E  
+                   l1757 156A                     l1749 154C                     l1693 1496  
+                   l1685 1464                     l1677 143A                     l1669 1422  
+                   l1597 1298                     l1589 127C                     l1871 170A  
+                   l1863 16EE                     l1855 16DE                     l1847 16C2  
+                   l1839 1690                     l1791 15D6                     l1783 15C2  
+                   l1775 15A4                     l1759 156E                     l1767 1582  
+                   l1695 149A                     l1679 1448                     l1599 12A6  
+                   l1873 170E                     l1865 16F6                     l1857 16E2  
+                   l1849 16C4                     l1793 15DA                     l1785 15C6  
+                   l1777 15A8                     l1769 1594                     l1697 149E  
+                   l1689 1486                     l1875 1712                     l1867 16FE  
+                   l1859 16E6                     l1787 15CA                     l1795 15DE  
+                   l1779 15AC                     l1699 14AE                     l1877 1716  
+                   l1869 1706                     l1797 15E2                     l1789 15D2  
+                   l1879 171A                     STR_1 101F                     STR_2 1011  
+                   STR_3 1033                     STR_4 102B                     STR_5 1001  
+                   u1000 1400                     u1001 13FC                     u1010 1410  
+                   u1011 140C                     u1100 150A                     u1020 1422  
+                   u1101 1506                     u1021 141E                     u1110 1538  
+                   u1030 1436                     u1111 1534                     u1031 1432  
+                   u1200 1674                     u1120 1566                     u1040 1448  
+                   u1201 1670                     u1121 1562                     u1041 1444  
+                   u1210 168C                     u1130 1594                     u1050 145A  
+                   u1211 1688                     u1131 1590                     u1051 1456  
+                   u1220 16A8                     u1140 15C2                     u1060 1474  
+                   u1221 16A4                     u1141 15BE                     u1061 1470  
+                   u1230 16BA                     u1150 15F2                     u1070 1482  
+                   u1231 16B6                     u1151 15EE                     u1071 147E  
+                   u1240 16D6                     u1160 1612                     u1080 14AE  
+                   u1241 16D2                     u1161 160E                     u1081 14AA  
+                   u1170 162C                     u1090 14DC                     u1171 1628  
+                   u1091 14D8                     u1180 1644                     u1181 1640  
+                   u1190 165C                     u1191 1658                     _TMR0 000FD6  
+                   _main 103A                     indf2 000FDF                     fsr1l 000FE1  
+                   fsr2l 000FD9  __size_of_clearTheScreen 0012                     start 0000  
+          __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000             ___param_bank 000000  
+                  ?_main 0065                    _T0CON 000FD5                    _PORTA 000F80  
+                  _PORTB 000F81                    _PORTC 000F82                    _PORTD 000F83  
+                  _PORTE 000F84                    _TRISA 000F92                    _TRISB 000F93  
+                  _TRISC 000F94                    _TRISD 000F95                    _TRISE 000F96  
+          __CFG_PWRT$OFF 000000              _writeString 17F2            __CFG_WRT0$OFF 000000  
+          __CFG_WRT1$OFF 000000            __CFG_WRT2$OFF 000000           __CFG_EBTR0$OFF 000000  
+         __CFG_FCMEN$OFF 000000           __CFG_EBTR1$OFF 000000           __CFG_EBTR2$OFF 000000  
+          __CFG_WRTB$OFF 000000            __CFG_WRTC$OFF 000000            __CFG_WRTD$OFF 000000  
+         __CFG_EBTRB$OFF 000000                    _line2 18B0                    tablat 000FF5  
+                  status 000FD8           __CFG_PBADEN$ON 000000          __initialization 177E  
+           __end_of_main 172A                   ??_main 0067            __activetblptr 000001  
+           ?_setUpTheLCD 0065                   _ADCON0 000FC2                   _ADCON1 000FC1  
+                 ?_line2 0065                   _OSCCON 000FD3         __end_of_debounce 18B0  
+         __CFG_XINST$OFF 000000           __CFG_STVREN$ON 000000                   _lcdOut 18E4  
+                 clear_0 17A4                   _rsLine 0052         __end_of_sendData 1860  
+           __pdataCOMRAM 0056             __mediumconst 0000                   tblptrh 000FF7  
+                 tblptrl 000FF6                   tblptru 000FF8               __accesstop 0080  
+__end_of__initialization 17AA           _clearTheScreen 18C2            ___rparam_used 000001  
+         __pcstackCOMRAM 0065            __end_of_line2 18C2         writeString@words 0065  
+                ??_line2 0065   __end_of_clearTheScreen 18D4                  ?_lcdOut 0065  
+           ?_writeString 0065                ?_debounce 0065                  _OSCTUNE 000F9B  
+   __size_of_setUpTheLCD 0054          ?_clearTheScreen 0065                ?_sendData 0065  
+                __Hparam 0000                  __Lparam 0000            ?_shiftcurleft 0065  
+           __psmallconst 1000          __size_of_lcdOut 000E                  __pcinit 177E  
+                _lcdData 0054                  __ramtop 1000               _initialise 17B8  
+                __ptext0 103A                  __ptext1 17F2                  __ptext2 1860  
+                __ptext3 172A                  __ptext4 18B0                  __ptext5 17B8  
+                __ptext6 1890                  __ptext7 18C2                  __ptext8 18E4  
+                __ptext9 182A                  _mintens 0060               ??_debounce 0065  
+                _sectens 0062     end_of_initialization 17AA               ??_sendData 0065  
+         ??_shiftcurleft 0065                  postdec1 000FE5                  postinc0 000FEE  
+              _PORTAbits 000F80                _PORTBbits 000F81            __pidataCOMRAM 18D4  
+            ?_initialise 0065           __end_of_lcdOut 18F2      start_initialization 177E  
+   __size_of_writeString 0038         __CFG_OSC$INTIO67 000000                 ??_lcdOut 0065  
+       __CFG_LPT1OSC$OFF 000000              __pbssCOMRAM 0001         ??_clearTheScreen 0065  
+      __size_of_debounce 0020     __end_of_shiftcurleft 1890      __size_of_initialise 003A  
+      __CFG_CCP2MX$PORTC 000000        __size_of_sendData 0036                _daynumber 0064  
+            __smallconst 1000            ??_setUpTheLCD 0065              _lcdTempData 0053  
+         __size_of_line2 0012                _hourunits 005F         __CFG_WDTPS$32768 000000  
+          _lcdInitialise 0056                copy_data0 1792            shiftcurleft@l 0065  
+    __end_of_setUpTheLCD 177E                 __Hrparam 0000                 __Lrparam 0000  
+           __Lsmallconst 1000       __CFG_BOREN$SBORDIS 000000             ??_initialise 0065  
+  __size_of_shiftcurleft 0030                 _debounce 1890            __size_of_main 06F0  
+     __end_of_initialise 17F2                 _sendData 182A                 _hourtens 005E  
+               _minunits 0061                 _secunits 0063             _shiftcurleft 1860  
+          ??_writeString 0067              _setUpTheLCD 172A             _setbutcounts 0051  
+    __end_of_writeString 182A  
